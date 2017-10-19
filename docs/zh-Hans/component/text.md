@@ -2,7 +2,7 @@
 
 Text 用于显示文本，在 web 中实际上是一个 span 标签而非 p 标签。 
 
-Text 标签默认展现样式会占满一行，如果有富文本的需求可以 Text 嵌套使用。
+Text 标签默认展现样式会占满一行，如果有富文本的需求可以 Text 嵌套使用（目前富文本不支持局部刷新，这种方式需要避免重复渲染，否则会有布局错乱问题）。
 
 ![](https://gw.alicdn.com/tfs/TB1CRrMRVXXXXXIapXXXXXXXXXX-259-276.jpg)
 

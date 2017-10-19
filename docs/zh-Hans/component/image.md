@@ -22,7 +22,7 @@ import Image from 'rax-image';
 
 | 名称         | 类型     | 默认值  | 描述                           |
 | :--------- | :----- | :--- | :--------------------------- |
-| scoure     | Object | ''   | 设置图片的 uri                    |
+| source     | Object | ''   | 设置图片的 uri                    |
 | style      | Object | ''   | 样式 图片不设置宽高则默认为0x0            |
 | resizeMode | String | ''   | 决定当组件尺寸和图片尺寸不成比例的时候如何调整图片的大小 |
 
