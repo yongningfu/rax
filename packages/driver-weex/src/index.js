@@ -9,7 +9,6 @@ const ID = 'id';
 const TEXT = 'text';
 const CHILDREN = 'children';
 const EVENT_PREFIX_REGEXP = /^on[A-Z]/;
-const FULL_WIDTH_REM = 750;
 const ARIA_PREFIX_REGEXP = /^aria-/;
 
 const nodeMaps = {};
@@ -19,6 +18,25 @@ const document = typeof __weex_document__ === 'object' ?
     document : null;
 
 const Driver = {
+  deviceWidth: 750,
+  viewportWidth: 750,
+
+  getDeviceWidth() {
+    return this.deviceWidth;
+  },
+
+  setDeviceWidth(width) {
+    this.deviceWidth = width;
+  },
+
+  getViewportWidth() {
+    return this.viewportWidth;
+  },
+
+  setViewportWidth(width) {
+    this.viewportWidth = width;
+  },
+
   getElementById(id) {
     return nodeMaps[id];
   },
@@ -117,8 +135,9 @@ const Driver = {
     return parent.insertBefore(node, before);
   },
 
-  addEventListener(node, eventName, eventHandler) {
-    return node.addEvent(eventName, eventHandler);
+  addEventListener(node, eventName, eventHandler, props) {
+    let params = props[eventName + 'EventParams'];
+    return node.addEvent(eventName, eventHandler, params);
   },
 
   removeEventListener(node, eventName, eventHandler) {
@@ -166,7 +185,7 @@ const Driver = {
     document.open();
 
     // Init rem unit
-    setRem(this.getWindowWidth() / FULL_WIDTH_REM);
+    setRem( this.getDeviceWidth() / this.getViewportWidth() );
   },
 
   afterRender() {
@@ -176,10 +195,6 @@ const Driver = {
 
     // Turn on batched updates
     document.close();
-  },
-
-  getWindowWidth() {
-    return FULL_WIDTH_REM;
   },
 
   setNativeProps(node, props, skipSetStyles) {
@@ -197,7 +212,7 @@ const Driver = {
           this.setStyles(node, value);
         } else if (EVENT_PREFIX_REGEXP.test(prop)) {
           let eventName = prop.slice(2).toLowerCase();
-          this.addEventListener(node, eventName, value);
+          this.addEventListener(node, eventName, value, props);
         } else {
           this.setAttribute(node, prop, value);
         }

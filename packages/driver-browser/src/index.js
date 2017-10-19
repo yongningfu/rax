@@ -2,10 +2,11 @@
  * Web Browser driver
  **/
 
-import {convertUnit, setRem} from 'style-unit';
+/* global DEVICE_WIDTH, VIEWPORT_WIDTH */
+
+import { convertUnit, setRem } from 'style-unit';
 import flexbox from './flexbox';
 
-const FULL_WIDTH_REM = 750;
 const DANGEROUSLY_SET_INNER_HTML = 'dangerouslySetInnerHTML';
 const CLASS_NAME = 'className';
 const CLASS = 'class';
@@ -13,7 +14,31 @@ const STYLE = 'style';
 const CHILDREN = 'children';
 const EVENT_PREFIX_REGEXP = /on[A-Z]/;
 
+const ADD_EVENT = 'addEvent';
+const REMOVE_EVENT = 'removeEvent';
+
 const Driver = {
+
+  deviceWidth: typeof DEVICE_WIDTH !== 'undefined' && DEVICE_WIDTH || null,
+  viewportWidth: typeof VIEWPORT_WIDTH !== 'undefined' && VIEWPORT_WIDTH || 750,
+  eventRegistry: {},
+
+  getDeviceWidth() {
+    return this.deviceWidth || document.documentElement.clientWidth;
+  },
+
+  setDeviceWidth(width) {
+    this.deviceWidth = width;
+  },
+
+  getViewportWidth() {
+    return this.viewportWidth;
+  },
+
+  setViewportWidth(width) {
+    this.viewportWidth = width;
+  },
+
   getElementById(id) {
     return document.getElementById(id);
   },
@@ -80,12 +105,20 @@ const Driver = {
     parent.insertBefore(node, before);
   },
 
-  addEventListener(node, eventName, eventHandler) {
-    return node.addEventListener(eventName, eventHandler);
+  addEventListener(node, eventName, eventHandler, props) {
+    if (this.eventRegistry[eventName]) {
+      return this.eventRegistry[eventName](ADD_EVENT, node, eventName, eventHandler, props);
+    } else {
+      return node.addEventListener(eventName, eventHandler);
+    }
   },
 
-  removeEventListener(node, eventName, eventHandler) {
-    return node.removeEventListener(eventName, eventHandler);
+  removeEventListener(node, eventName, eventHandler, props) {
+    if (this.eventRegistry[eventName]) {
+      return this.eventRegistry[eventName](REMOVE_EVENT, node, eventName, eventHandler, props);
+    } else {
+      return node.removeEventListener(eventName, eventHandler);
+    }
   },
 
   removeAllEventListeners(node) {
@@ -102,7 +135,10 @@ const Driver = {
     }
 
     if (propKey in node) {
-      node[propKey] = null;
+      try {
+        // Some node property is readonly when in strict mode
+        node[propKey] = null;
+      } catch (e) { }
     }
 
     node.removeAttribute(propKey);
@@ -118,7 +154,12 @@ const Driver = {
     }
 
     if (propKey in node) {
-      node[propKey] = propValue;
+      try {
+        // Some node property is readonly when in strict mode
+        node[propKey] = propValue;
+      } catch (e) {
+        node.setAttribute(propKey, propValue);
+      }
     } else {
       node.setAttribute(propKey, propValue);
     }
@@ -151,11 +192,7 @@ const Driver = {
 
   beforeRender() {
     // Init rem unit
-    setRem(this.getWindowWidth() / FULL_WIDTH_REM);
-  },
-
-  getWindowWidth() {
-    return document.documentElement.clientWidth;
+    setRem(this.getDeviceWidth() / this.getViewportWidth());
   },
 
   setNativeProps(node, props) {

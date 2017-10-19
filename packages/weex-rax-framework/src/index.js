@@ -33,10 +33,6 @@ function dispatchEventToInstance(event, targetOrigin) {
   }
 }
 
-function updateFinish(doc) {
-  doc.taskCenter.send('dom', { action: 'updateFinish' }, []);
-}
-
 export function getInstance(instanceId) {
   const instance = instances[instanceId];
   if (!instance) {
@@ -69,6 +65,32 @@ export function registerComponents(components) {
       }
     });
   }
+}
+
+function __weex_module_supports__(name) {
+  let parts = name.split('.');
+  if (parts.length === 1) {
+    return Boolean(NativeModules[name]);
+  } else {
+    let moduleName = parts[0];
+    let methodName = parts[1];
+    let moduleMethods = NativeModules[moduleName];
+
+    if (moduleMethods) {
+      for (let i = 0; i < moduleMethods.length; i++) {
+        let method = moduleMethods[i];
+        if (typeof method === 'object' && method.name === methodName || method === methodName) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+}
+
+function __weex_tag_supports__(name) {
+  return Boolean(NativeComponents[name]);
 }
 
 /**
@@ -124,7 +146,7 @@ function genNativeModules(modules, document) {
         modules[moduleName].module.exports[methodName] = (...args) => {
           let options = {};
           let lastArg = args[args.length - 1];
-          if (typeof lastArg === 'object' && lastArg.__weex_options__) {
+          if (lastArg && typeof lastArg === 'object' && lastArg.__weex_options__) {
             options = lastArg.__weex_options__;
             // Remove the last in args
             args.pop();
@@ -166,10 +188,12 @@ export function createInstance(instanceId, __weex_code__, __weex_options__, __we
     const WeakMap = typeof WeakMap === 'function' ? WeakMap : shared.WeakMap;
     const WeakSet = typeof WeakSet === 'function' ? WeakSet : shared.WeakSet;
     const {URL, URLSearchParams, FontFace, matchMedia} = shared;
-    const bundleUrl = __weex_options__.bundleUrl || 'about:blank';
+    let bundleUrl = __weex_options__.bundleUrl || 'about:blank';
 
     if (!__weex_options__.bundleUrl) {
       console.error('Error: Must have bundleUrl option when createInstance, downgrade to "about:blank".');
+    } else if (!bundleUrl.split('//')[0]) {
+      bundleUrl = 'https:' + bundleUrl;
     }
 
     const document = new Document(instanceId, bundleUrl);
@@ -322,13 +346,16 @@ export function createInstance(instanceId, __weex_code__, __weex_options__, __we
       require: __weex_require__,
       // Weex
       __weex_document__: document,
+      __weex_module_supports__,
+      __weex_tag_supports__,
       __weex_define__,
       __weex_require__,
       __weex_downgrade__,
       __weex_env__,
       __weex_code__,
       __weex_options__,
-      __weex_data__
+      __weex_data__,
+      __weex_config__
     };
 
     instance.window = window.self = window.window = window;
@@ -437,7 +464,7 @@ export function getRoot(instanceId) {
   return document.toJSON ? document.toJSON() : {};
 }
 
-function fireEvent(doc, ref, type, e, domChanges) {
+function fireEvent(doc, ref, type, e, domChanges, params) {
   if (Array.isArray(ref)) {
     ref.some((ref) => {
       return fireEvent(doc, ref, type, e) !== false;
@@ -448,8 +475,7 @@ function fireEvent(doc, ref, type, e, domChanges) {
   const el = doc.getRef(ref);
 
   if (el) {
-    const result = doc.fireEvent(el, type, e, domChanges);
-    updateFinish(doc);
+    const result = doc.fireEvent(el, type, e, domChanges, params);
     return result;
   }
 
@@ -470,12 +496,11 @@ export function receiveTasks(instanceId, tasks) {
     tasks.forEach(task => {
       let result;
       if (task.method === 'fireEvent') {
-        let [nodeId, type, data, domChanges] = task.args;
-        result = fireEvent(document, nodeId, type, data, domChanges);
+        let [nodeId, type, data, domChanges, params] = task.args;
+        result = fireEvent(document, nodeId, type, data, domChanges, params);
       } else if (task.method === 'callback') {
         let [uid, data, ifKeepAlive] = task.args;
         result = document.taskCenter.callback(uid, data, ifKeepAlive);
-        updateFinish(document);
       }
       results.push(result);
     });

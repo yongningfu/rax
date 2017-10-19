@@ -6,20 +6,41 @@ import instantiateComponent from './instantiateComponent';
 import shouldUpdateComponent from './shouldUpdateComponent';
 import shallowEqual from './shallowEqual';
 
-function performInSandbox(fn, handleError) {
+function performInSandbox(fn, instance, callback) {
   try {
     return fn();
   } catch (e) {
-    if (handleError) {
-      handleError(e);
+    if (callback) {
+      callback(e);
     } else {
-      if (Host.sandbox) {
-        setTimeout(() => {
-          throw e;
-        }, 0);
-      } else {
-        throw e;
-      }
+      handleError(instance, e);
+    }
+  }
+}
+
+function handleError(instance, error) {
+  let boundary;
+
+  while (instance) {
+    if (typeof instance.componentDidCatch === 'function') {
+      boundary = instance;
+      break;
+    } else if (instance._internal && instance._internal._parentInstance) {
+      instance = instance._internal._parentInstance;
+    } else {
+      break;
+    }
+  }
+
+  if (boundary) {
+    boundary.componentDidCatch(error);
+  } else {
+    if (Host.sandbox) {
+      setTimeout(() => {
+        throw error;
+      }, 0);
+    } else {
+      throw error;
     }
   }
 }
@@ -28,7 +49,7 @@ let measureLifeCycle;
 if (process.env.NODE_ENV !== 'production') {
   measureLifeCycle = function(callback, instanceID, type) {
     Host.measurer && Host.measurer.beforeLifeCycle(instanceID, type);
-    performInSandbox(callback);
+    callback();
     Host.measurer && Host.measurer.afterLifeCycle(instanceID, type);
   };
 }
@@ -51,8 +72,9 @@ class CompositeComponent {
     );
   }
 
-  mountComponent(parent, context, childMounter) {
+  mountComponent(parent, parentInstance, context, childMounter) {
     this._parent = parent;
+    this._parentInstance = parentInstance;
     this._context = context;
     this._mountID = Host.mountID++;
     this._updateCount = 0;
@@ -82,7 +104,7 @@ class CompositeComponent {
       // Functional stateless component without state and lifecycles
       instance = new StatelessComponent(Component);
     } else {
-      throw Error(`Invalid component type ${JSON.stringify(Component)}`);
+      throw new Error(`Invalid component type: ${Component}. (keys: ${Object.keys(Component)})`);
     }
 
     // These should be set up in the constructor, but as a convenience for
@@ -103,8 +125,13 @@ class CompositeComponent {
       instance.state = initialState = null;
     }
 
-    performInSandbox(() => {
-      if (instance.componentWillMount) {
+    let error = null;
+    let errorCallback = (e) => {
+      error = e;
+    };
+
+    if (instance.componentWillMount) {
+      performInSandbox(() => {
         if (process.env.NODE_ENV !== 'production') {
           measureLifeCycle(() => {
             instance.componentWillMount();
@@ -112,21 +139,13 @@ class CompositeComponent {
         } else {
           instance.componentWillMount();
         }
-      }
-    });
+      }, instance, errorCallback);
+    }
 
     if (renderedElement == null) {
       Host.component = this;
       // Process pending state when call setState in componentWillMount
       instance.state = this._processPendingState(publicProps, publicContext);
-
-      // FIXME: handleError should named as lifecycles
-      let handleError;
-      if (typeof instance.handleError === 'function') {
-        handleError = (e) => {
-          instance.handleError(e);
-        };
-      }
 
       performInSandbox(() => {
         if (process.env.NODE_ENV !== 'production') {
@@ -136,7 +155,7 @@ class CompositeComponent {
         } else {
           renderedElement = instance.render();
         }
-      }, handleError);
+      }, instance, errorCallback);
 
       Host.component = null;
     }
@@ -144,16 +163,21 @@ class CompositeComponent {
     this._renderedComponent = instantiateComponent(renderedElement);
     this._renderedComponent.mountComponent(
       this._parent,
+      instance,
       this._processChildContext(context),
       childMounter
     );
+
+    if (error) {
+      handleError(instance, error);
+    }
 
     if (this._currentElement && this._currentElement.ref) {
       Ref.attach(this._currentElement._owner, this._currentElement.ref, this);
     }
 
-    performInSandbox(() => {
-      if (instance.componentDidMount) {
+    if (instance.componentDidMount) {
+      performInSandbox(() => {
         if (process.env.NODE_ENV !== 'production') {
           measureLifeCycle(() => {
             instance.componentDidMount();
@@ -161,8 +185,8 @@ class CompositeComponent {
         } else {
           instance.componentDidMount();
         }
-      }
-    });
+      }, instance);
+    }
 
     Host.hook.Reconciler.mountComponent(this);
 
@@ -176,11 +200,11 @@ class CompositeComponent {
   unmountComponent(notRemoveChild) {
     let instance = this._instance;
 
-    performInSandbox(() => {
-      if (instance.componentWillUnmount) {
+    if (instance.componentWillUnmount) {
+      performInSandbox(() => {
         instance.componentWillUnmount();
-      }
-    });
+      }, instance);
+    }
 
     Host.hook.Reconciler.unmountComponent(this);
 
@@ -198,6 +222,7 @@ class CompositeComponent {
     }
 
     this._currentElement = null;
+    this._parentInstance = null;
 
     // Reset pending fields
     // Even if this component is scheduled for another update in ReactUpdates,
@@ -250,8 +275,8 @@ class CompositeComponent {
       Object.assign(
         nextState,
         typeof partial === 'function' ?
-        partial.call(instance, nextState, props, context) :
-        partial
+          partial.call(instance, nextState, props, context) :
+          partial
       );
     }
 
@@ -305,7 +330,7 @@ class CompositeComponent {
       this._pendingState = true;
       performInSandbox(() => {
         instance.componentWillReceiveProps(nextProps, nextContext);
-      });
+      }, instance);
       this._pendingState = false;
     }
 
@@ -325,7 +350,7 @@ class CompositeComponent {
         shouldUpdate = performInSandbox(() => {
           return instance.shouldComponentUpdate(nextProps, nextState,
             nextContext);
-        });
+        }, instance);
       } else if (instance.isPureComponentClass) {
         shouldUpdate = !shallowEqual(prevProps, nextProps) || !shallowEqual(
           prevState, nextState);
@@ -343,7 +368,7 @@ class CompositeComponent {
         if (instance.componentWillUpdate) {
           instance.componentWillUpdate(nextProps, nextState, nextContext);
         }
-      });
+      }, instance);
 
       // Replace with next
       this._currentElement = nextElement;
@@ -358,7 +383,7 @@ class CompositeComponent {
         if (instance.componentDidUpdate) {
           instance.componentDidUpdate(prevProps, prevState, prevContext);
         }
-      });
+      }, instance);
 
       this._updateCount++;
     } else {
@@ -405,7 +430,7 @@ class CompositeComponent {
       } else {
         nextRenderedElement = instance.render();
       }
-    });
+    }, instance);
 
     Host.component = null;
 
@@ -430,6 +455,7 @@ class CompositeComponent {
       this._renderedComponent = instantiateComponent(nextRenderedElement);
       this._renderedComponent.mountComponent(
         this._parent,
+        instance,
         this._processChildContext(context),
         (newChild, parent) => {
           // TODO: Duplicate code in native component file
