@@ -1,7 +1,15 @@
 import isIOS8Web from './isIOS8Web';
 import separateStyle from './separateStyle';
 
-const ISIOS8WEB = isIOS8Web();
+var hasNavigator;
+
+try {
+  hasNavigator = !!eval('navigator');
+} catch(err) {
+  hasNavigator = false;
+}
+
+var ISIOS8WEB = hasNavigator && (0, _isIOS8Web2.default)();
 
 export default {
   getScrollViewStyle() {

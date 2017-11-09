@@ -2,12 +2,17 @@ import {createElement, findDOMNode, Component} from 'rax';
 import transition from 'universal-transition';
 import {isWeex} from 'universal-env';
 
-let fullWidthPx = 0;
-if (isWeex) {
-  let weexEnv = typeof WXEnvironment !== 'undefined' ? WXEnvironment : {};
+var fullWidthPx = 0;
+if (_universalEnv.isWeex) {
+  var weexEnv = typeof WXEnvironment !== 'undefined' ? WXEnvironment : {};
   fullWidthPx = weexEnv.deviceWidth;
 } else {
-  fullWidthPx = document.body.clientWidth;
+  var global;
+  global = (function(){ return this; })();
+  if(global && global.document && global.document.body && (typeof global.document.body.clientWidth == 'number'))
+    fullWidthPx = document.body.clientWidth;
+  else
+    fullWidthPx = 750;
 }
 
 let Animated = {
