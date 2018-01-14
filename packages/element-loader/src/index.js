@@ -20,20 +20,32 @@ module.exports = function(source) {
   // parse template
   const template = parseObject.template;
   if (template) {
-    output += `let template = ${getCodeString('template', template, filePath)};\n`;
+    output += `let template = ${getCodeString({
+      type: 'template',
+      data: template,
+      path: filePath,
+      context: this,
+      query
+    })};\n`;
   }
 
   // parse script
   const script = parseObject.script;
   if (script) {
-    output += `let ${componentName} = ${getCodeString('script', script, filePath)};\n`;
+    output += `let ${componentName} = ${getCodeString({
+      type: 'script',
+      data: script,
+      path: filePath,
+      context: this,
+      query
+    })};\n`;
     output += `${componentName} = ${componentName}.__esModule ? ${componentName}.default : ${componentName};\n`;
   }
 
   // parse link stylesheet
   const styleSheetLinks = parseObject.styleSheetLinks;
   if (styleSheetLinks.length) {
-    styleSheetLinks.forEach((link) => {
+    styleSheetLinks.forEach(link => {
       output += `styles = Object.assign(styles, require('!!stylesheet-loader!${link}'));\n`;
     });
   }
@@ -41,29 +53,16 @@ module.exports = function(source) {
   // parse style
   const styles = parseObject.styles;
   if (styles) {
-    output += `styles = Object.assign(styles, ${getCodeString('style', styles[0], filePath)});\n`;
+    output += `styles = Object.assign(styles, ${getCodeString({
+      type: 'style',
+      data: styles[0],
+      path: filePath,
+      context: this,
+      query
+    })});\n`;
   }
 
-  function getCodeString(type, data, path) {
-    let loaderString = '';
-
-    switch (type) {
-      case 'template':
-        loaderString = `${pkg.name}/lib/template-loader?${JSON.stringify(query)}!${pkg.name}/lib/node-loader?type=template&index=0!`;
-        break;
-      case 'style':
-        loaderString = `stylesheet-loader!${pkg.name}/lib/node-loader?type=styles&index=0!`;
-        break;
-      case 'script':
-        loaderString = `babel-loader?${JSON.stringify(getBabelConfig(query))}!${pkg.name}/lib/node-loader?${JSON.stringify({type: 'script', index: 0, banner: query.banner})}!`;
-        break;
-    }
-    return 'require(' + loaderUtils.stringifyRequest(
-      context,
-      `!!${loaderString}${path}`
-    ) + ')';
-  }
-
+  // append the render and module.exports
   output += `
 if (${componentName} && typeof ${componentName} === 'function') {
   ${componentName}.prototype.render = function() {
@@ -73,6 +72,37 @@ if (${componentName} && typeof ${componentName} === 'function') {
 
 module.exports = ${componentName};
   `;
+
   return output;
 };
 
+function getCodeString({ type, data, path, context, query }) {
+  let loaderString = '';
+
+  switch (type) {
+    case 'template':
+      loaderString = `${pkg.name}/lib/template-loader?${JSON.stringify(
+        query
+      )}!${pkg.name}/lib/node-loader?type=template&index=0!`;
+      break;
+    case 'style':
+      loaderString = `stylesheet-loader!${
+        pkg.name
+      }/lib/node-loader?type=styles&index=0!`;
+      break;
+    case 'script':
+      loaderString = `babel-loader?${JSON.stringify(getBabelConfig(query))}!${
+        pkg.name
+      }/lib/node-loader?${JSON.stringify({
+        type: 'script',
+        index: 0,
+        banner: query.banner
+      })}!`;
+      break;
+  }
+  return (
+    'require(' +
+    loaderUtils.stringifyRequest(context, `!!${loaderString}${path}`) +
+    ')'
+  );
+}
