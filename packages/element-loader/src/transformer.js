@@ -5,10 +5,10 @@ import { IF_KEY, FOR_KEY } from './defaultKey';
 
 const FULL_VALUE_REG = /\{\{(.*)\}\}/g;
 
-export const transformFor = (attributes, begin = true, scope = {}) => {
+export function transformFor(attributes, begin = true, scope = {}) {
   let output = '';
 
-  hasForKey(attributes, (attribute) => {
+  hasForKey(attributes, attribute => {
     let value = attribute.value.replace(FULL_VALUE_REG, '$1');
     value = value.split(' in ');
 
@@ -19,7 +19,7 @@ export const transformFor = (attributes, begin = true, scope = {}) => {
 
     if (begin) {
       scope[value[0]] = 1;
-      output += `{props.${value[1]}.map((${value[0]}) => {return (`;
+      output += `{this.${value[1]}.map((${value[0]}) => {return (`;
     } else {
       scope[value[0]] = null;
       delete scope[value[0]];
@@ -28,13 +28,13 @@ export const transformFor = (attributes, begin = true, scope = {}) => {
   });
 
   return output;
-};
+}
 
 // transform if block
-export const transformIf = (attributes, begin = true, scope) => {
+export function transformIf(attributes, begin = true, scope) {
   let output = '';
 
-  hasIfKey(attributes, (attribute) => {
+  hasIfKey(attributes, attribute => {
     if (begin) {
       output += `{(${attribute.value.replace(FULL_VALUE_REG, (word, $1) => {
         return transformPair($1, scope);
@@ -45,7 +45,7 @@ export const transformIf = (attributes, begin = true, scope) => {
   });
 
   return output;
-};
+}
 
 export const hasIfKey = (attributes, callback) => {
   return hasKey(IF_KEY, attributes, callback);
@@ -59,7 +59,7 @@ const hasKey = (keyName, attributes = [], callback = () => {}) => {
   let hasKey = false;
   attributes = Array.from(attributes);
 
-  attributes.forEach((attribute) => {
+  attributes.forEach(attribute => {
     if (attribute.name === keyName) {
       hasKey = true;
       callback(attribute);
@@ -79,21 +79,11 @@ export function transformPair(code, scope, config = {}) {
       }
       const type = parent && parent.type;
       if (
-        (
-          type !== 'MemberExpression' ||
+        (type !== 'MemberExpression' ||
           parent.object === node ||
-
-            parent.property === node &&
-            parent.computed
-
-        ) &&
-        (
-          type !== 'ObjectProperty' ||
-          parent.key !== node
-        ) &&
-
-          !findScope(scope, node.name)
-
+          (parent.property === node && parent.computed)) &&
+        (type !== 'ObjectProperty' || parent.key !== node) &&
+        !findScope(scope, node.name)
       ) {
         node.name = `props.${node.name}`;
       }
