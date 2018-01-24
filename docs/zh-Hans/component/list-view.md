@@ -1,6 +1,7 @@
 # ListView 列表容器
 
-较复杂的列表实现，通过 dataSource 来定义每行渲染的数据，通过 renderRow 来定义每行渲染的模板，内部实现基于 RecyclerView。
+较复杂的列表实现，通过 dataSource 来定义每行渲染的数据，通过 renderRow 来定义每行渲染的模板，内部实现基于 RecyclerView。  
+如果对性能有更高的要求推荐使用 RecyclerView，更方便进行扩展
 
 ![](https://gw.alicdn.com/tfs/TB1VQ3nRVXXXXcTXXXXXXXXXXXX-255-433.gif)
 
@@ -50,16 +51,7 @@ import ListView from 'rax-listview';
 import {createElement, Component, render} from 'rax';
 import View from 'rax-view';
 import Text from 'rax-text';
-import Image from 'rax-image';
-import Link from 'rax-link';
-import TextInput from 'rax-textinput';
-import Button from 'rax-button';
-import Switch from 'rax-switch';
-import Video from 'rax-video';
-import ScrollView from 'rax-scrollview';
 import ListView from 'rax-listview';
-import Touchable from 'rax-touchable';
-
 
 let listData = [
     {name1: 'tom'}, {name1: 'tom'}, {name1: 'tom'},

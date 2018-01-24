@@ -28,7 +28,29 @@ import {createElement, Component, render} from 'rax';
 import View from 'rax-view';
 import Text from 'rax-text';
 
-render(<View>
-  <Text style={{fontSize: 50}}>Hello World!</Text>
+render(<View style={{
+      padding: 30,
+    }}>
+   <View style={{
+      width: 300,
+      height: 300,
+      backgroundColor:"red"
+    }}/>
+   <View style={{
+      width: 300,
+      height: 300,
+      backgroundColor:"green",
+      position: 'absolute',
+      top: 20,
+      left: 20,
+    }}/>
+   <View style={{
+      width: 300,
+      height: 300,
+      backgroundColor:"yellow",
+      position: 'absolute',
+      top: 80,
+      left: 210,
+    }}/>
 </View>);
 ```

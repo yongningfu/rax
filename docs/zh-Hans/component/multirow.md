@@ -50,3 +50,79 @@ class Demo extends Component {
 
 render(<Demo />);
 ```
+
+```jsx
+// demo
+import {createElement, Component, render} from 'rax';
+import View from 'rax-view';
+import Text from 'rax-text';
+import MultiRow from 'rax-multirow';
+
+class App extends Component {
+  render() {
+    return (
+      <View style={styles.root}>
+        
+        <View style={styles.container}>
+          <MultiRow
+            dataSource={[1, 2, 3, 4, 5, 6]}
+            cells={3}
+            renderCell={(item, index) => {
+              return (
+                <Text style={styles.num}>{item}</Text>
+              );
+            }
+          } />
+        </View>
+
+        <View style={styles.container}>
+          <MultiRow
+            dataSource={[1, 2, 3, 4, 5]}
+            cells={3}
+            renderCell={(item, index) => {
+              return (
+                <Text style={styles.num}>{item}</Text>
+              );
+            }
+          } />
+        </View>
+
+        <View style={styles.container}>
+          <MultiRow
+            dataSource={[1, 2, 3, 4, 5, '']}
+            cells={3}
+            renderCell={(item, index) => {
+              return (
+                <Text style={styles.num}>{item}</Text>
+              );
+            }
+          } />
+        </View>
+
+      </View>
+    );
+  }
+}
+
+let styles = {
+  root: {
+    width: 750,
+    paddingTop: 20
+  },
+  container: {
+    padding: 20,
+    borderStyle: 'solid',
+    borderColor: '#dddddd',
+    borderWidth: 1,
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 10,
+  },
+  num: {
+    textAlign: 'center',
+  }
+};
+
+
+render(<App />);
+```

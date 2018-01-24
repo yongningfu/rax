@@ -22,16 +22,24 @@ import Picture from 'rax-picture';
 
 | 名称               | 类型      | 默认值       | 描述                                       |
 | :--------------- | :------ | :-------- | :--------------------------------------- |
-| source           | Object  | {uri: ''} | 图片来源（必需）                                 |
-| style            | Object  |           | 样式，必须设置 style.width ，在已知图像真实宽高时可不设置 style.height ，让 rax-pictrue 根据的你的图像真实宽高进行计算（必需） |
-| resizeMode       | String  | stretch   | 决定当组件尺寸和图片尺寸不成比例的时候如何调整图片的大小。下见说明。       |
-| forceUpdate      | Boolean | false     | Picture 是一个 PureComponent ，它的 shouldComponentUpdate 决定了当且仅当 porps.source.uri 有变化时才会重新 render。如果你想忽略它的 shouldComponentUpdate，则传入 `forceUpdate={true}` |
-| width            | Number  |           | 图片真实宽度，单位 px                             |
-| height           | Number  |           | 图片真实高度，单位 px                             |
-| lazyload         | Boolean | false     | （web端有效）根据图像是否在可视范围内延迟加载图像，Web 端需引入 `framework.web.js` 脚本 |
-| autoPixelRatio   | Boolean | true      | （web端有效）在高分辨率下使用二倍图                      |
-| placeholder      | String  |           | （web端有效）lazyload 时显示的背景图 URL             |
-| autoRemoveScheme | Boolean | true      | （web端有效）图像 URL 自动删除协议头                   |
+| source           | object  | {uri: ''} | 图片来源（必需）                                 |
+| style            | object  |           | 样式，必须设置 style.width ，在已知图像真实宽高时可不设置 style.height ，让 rax-pictrue 根据的你的图像真实宽高进行计算（必需） |
+| resizeMode       | string  | stretch   | 决定当组件尺寸和图片尺寸不成比例的时候如何调整图片的大小。下见说明。       |
+| forceUpdate      | boolean | false     | Picture 是一个 PureComponent ，它的 shouldComponentUpdate 决定了当且仅当 porps.source.uri 有变化时才会重新 render。如果你想忽略它的 shouldComponentUpdate，则传入 `forceUpdate={true}` |
+| width            | number  |           | 图片真实宽度，单位 px                             |
+| height           | number  |           | 图片真实高度，单位 px                             |
+| lazyload         | boolean | false     | （web端有效）根据图像是否在可视范围内延迟加载图像，Web 端需引入 `framework.web.js` 脚本 |
+| autoPixelRatio   | boolean | true      | （web端有效）在高分辨率下使用二倍图                      |
+| placeholder      | string  |           | （web端有效）lazyload 时显示的背景图 URL, 不能同时设置 resizeMode，会有意想不到的效果             |
+| autoRemoveScheme | boolean | true      | （web端有效）图像 URL 自动删除协议头                   |
+| autoReplaceDomain | boolean | true             | （web端有效） 图像 URL 域名替换成 gw.alicdn.com      |
+| autoScaling       | boolean | true             | （web端有效） 为图像 URL 添加缩放后缀，将会根据 style 内的 width 属性添加缩放后缀 |
+| autoWebp          | boolean | true             | （web端有效） 添加 webp 后缀                      |
+| autoCompress      | boolean | true             | （web端有效） 添加质量压缩后缀                        |
+| compressSuffix    | array   | `['q75', 'q50']` | （web端有效） 图像质量压缩后缀规则                      |
+| highQuality       | boolean | true             | （web端有效） 使用高质量的压缩后缀                      |
+| ignoreGif         | boolean | true             | （web端有效） 所有针对 URL 的优化是否忽略 gif 格式的图像，默认忽略 |
+
 
 
 ** resizeMode 可用值：**
@@ -47,28 +55,75 @@ import Picture from 'rax-picture';
 ```jsx
 // demo
 import {createElement, Component, render} from 'rax';
-import ScrollView from 'rax-scrollview';
-import 'rax-components'; // hack for rax-picture@0.2.5
+import View from 'rax-view';
+import Text from 'rax-text';
 import Picture from 'rax-picture';
 
-class Demo extends Component {
+let image = '//camo.githubusercontent.com/27b9253de7b03a5e69a7c07b0bc1950c4976a5c2/68747470733a2f2f67772e616c6963646e2e636f6d2f4c312f3436312f312f343031333762363461623733613132336537386438323436636438316338333739333538633939395f343030783430302e6a7067';
+
+class App extends Component {
   render() {
-    return <ScrollView ref='scroll'>
-       <Picture
-         source={{
-           uri: '//gw.alicdn.com/tfscom/tuitui/TB2jLF1lXXXXXc7XXXXXXXXXXXX_!!0-dgshop.jpg',
-         }}
-         style={{
-           width: 375,
-           height: 252
-         }}
-         lazyload={true}
-         resizeMode="cover"
-       />
-    </ScrollView>;
+    return (
+      <View style={styles.root}>
+        <View style={styles.container}>
+          <Picture
+            source={{uri: image}}
+            style={{
+              width: 600
+            }}
+            lazyload={true}
+          />
+          <Text>resizeMode="cover"</Text>
+          <Picture
+            source={{uri: image}}
+            style={{
+              width: 400,
+              height: 200,
+            }}
+            resizeMode="cover"
+            lazyload={true}
+            autoWebp={false}
+            autoCompress={false}
+            autoRemoveScheme={false}
+            autoReplaceDomain={false}
+            autoScaling={false}
+            highQuality={false}
+          />
+          <Text>text and image</Text>
+          <Picture
+            source={{uri: image}}
+            style={{
+              width: 300,
+              height: 300
+            }}
+            lazyload={true}
+          >
+            <Text style={{color: 'blue', fontSize: 40}}>hello rax</Text>
+          </Picture>
+        </View>
+
+      </View>
+    );
   }
 }
-render(<Demo />);
+
+let styles = {
+  root: {
+    width: 750,
+    paddingTop: 20
+  },
+  container: {
+    padding: 20,
+    borderStyle: 'solid',
+    borderColor: '#dddddd',
+    borderWidth: 1,
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 10,
+  },
+};
+
+render(<App />);
 ```
 
 ## 本地图片示例
