@@ -118,7 +118,7 @@ class App extends Component {
               borderColor: '#666666',
               padding: 16,
             }}>
-              <Image style={{width: 36, height: 36, marginRight: 6}} source={{uri: 'http://img.alicdn.com/L1/461/1/126ba1d7397f0024a6fa785d72402ff112ee179e'}} />
+              <Image style={{width: 36, height: 36, marginRight: 6}} source={{uri: '//img.alicdn.com/L1/461/1/126ba1d7397f0024a6fa785d72402ff112ee179e'}} />
               <Text>Pokeball</Text>
             </View>
           </Button>
