@@ -165,7 +165,7 @@ class App extends Component {
           color: 'red',
           textOverflow: 'ellipsis'
         }}>
-          <a href="http://t.cn?_wx_tpl=http://g.tbcdn.cn/ali-wireless-h5/res/0.0.16/hello.js">
+          <a href="//www.taobao.com">
             <span>TAOBAO</span>
           </a>
           <img style={{width:300, height:300}} src="//www.fresher.ru/manager_content/images2/kadry-veka/big/2-1.jpg"></img>
