@@ -1,0 +1,15 @@
+{
+  "name": "weapp-rax-framework",
+  "version": "0.5.2",
+  "description": "Rax framework for weapp.",
+  "license": "BSD-3-Clause",
+  "main": "dist/framework.weapp.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alibaba/rax.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alibaba/rax/issues"
+  },
+  "homepage": "https://github.com/alibaba/rax#readme"
+}
