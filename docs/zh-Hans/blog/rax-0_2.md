@@ -114,7 +114,7 @@ fontface
 ```
 @font-face {
 	font-family: icon;
-	src: url(http://at.alicdn.com/t/font_pkm0oq8is8fo5hfr.ttf);
+	src: url(//at.alicdn.com/t/font_pkm0oq8is8fo5hfr.ttf);
 }
 ```
 
