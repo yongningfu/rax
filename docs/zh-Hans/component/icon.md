@@ -34,7 +34,7 @@ import Icon, {createIconSet} from 'rax-icon';
 createIconSet 方式：
 
 ```jsx
-const IconFont = createIconSet({ hello: '\ue60f' }, 'iconfont', 'http://at.alicdn.com/t/font_pkm0oq8is8fo5hfr.ttf');
+const IconFont = createIconSet({ hello: '\ue60f' }, 'iconfont', '//at.alicdn.com/t/font_pkm0oq8is8fo5hfr.ttf');
 <IconFont name={'hello'}/>
 ```
 
