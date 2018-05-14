@@ -4,6 +4,8 @@ date: 20170528
 author: 亚城
 ---
 
+# Rax 0.3 发布
+
 ![Rax 0.3](https://img.alicdn.com/tfs/TB1CVaVRpXXXXcnXFXXXXXXXXXX-817-460.jpg)
 
 2017年5月底 Rax 发布 0.3 版本。伴着初夏，我们看看都有哪些新东西。

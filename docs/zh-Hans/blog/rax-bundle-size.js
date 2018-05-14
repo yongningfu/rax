@@ -4,6 +4,8 @@ date: 20180224
 author: 正寻
 ---
 
+# Rax 系列教程：如何优雅的减少bundle size
+
 本文试图描述在rax体系下，减少js bundle size的常规与非常规手段。阅读本文你可能会了解到一下知识点：
 1\. 为什么要减少bundle size？
 2\. 减少bundle size的常规手段有哪些？

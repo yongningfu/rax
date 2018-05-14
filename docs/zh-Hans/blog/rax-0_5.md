@@ -4,6 +4,8 @@ date: 20171213
 author: 亚城
 ---
 
+# Rax 0.5 发布
+
 ![](https://gw.alicdn.com/tfs/TB1jt2NgBTH8KJjy0FiXXcRsXXa-745-325.jpg)
 
 
