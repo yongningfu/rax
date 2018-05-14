@@ -148,7 +148,7 @@ this.refs.list.resetScroll();
 
 ### [](#横滑切换多页面 "横滑切换多页面")横滑切换多页面
 
-![](http://gw.alicdn.com/mt/LB18hRSQpXXXXbPXXXXXXXXXXXX-375-667.gif)
+![](//gw.alicdn.com/mt/LB18hRSQpXXXXbPXXXXXXXXXXXX-375-667.gif)
 
 性能的优化带来的是体验的提升，我们可以不再拘泥于刷新页面来切换页面。这就有了横滑翻页的尝试。其主要思路就是通过手势来进行横滑拖拽。
 

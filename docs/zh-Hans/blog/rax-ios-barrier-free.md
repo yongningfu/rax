@@ -259,13 +259,13 @@ navigationBar.setRightItem({
 
 Weex 和 Rax 团队在 IOS 上的无障碍基础能力已基本完成，下一阶段会重点关注 Rax 组件和 Android。无障碍是一个产品和团队需要共同关注的话题，欢迎大家一起共建，相关疑问和建议可以在钉钉群中进行，也可以前往[aone](https://aone.alibaba-inc.com/project/476334/issue/new?toPage=1)反馈。
 
-![](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/6eebca2ecfbad543fed29adeec432546.png)
+![](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/6eebca2ecfbad543fed29adeec432546.png)
 
 ## [](#24)更多
 
 ### [](#25)@ali/universal-a11y
 
-[@ali/universal-a11y](http://gitlab.alibaba-inc.com/universal/a11y) 提供了一些常用方法。
+[@ali/universal-a11y](//gitlab.alibaba-inc.com/universal/a11y) 提供了一些常用方法。
 
 ### [](#26)Weex 无障碍能力手册
 

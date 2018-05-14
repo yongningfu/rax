@@ -148,7 +148,7 @@ weex 下没有script标签，要使用就需要hack。
 *   不定期的运营投放，只在某些时间才会用到某些模块，那需要打进bundle 吗？
 *   动态模块场景：第三方业务提供的模块的发布与更新
 *   页面是native的，内嵌的weex模块
-*   可怜的zcache到达率，发布一次回到解放前。 其实在众多的搭建体系里面已经有类似的技术了，那就是编写模块，提取依赖，并把各个依赖发布到cdn，然后把各个模块combo后加载并执行。 下面这个图是我们充值中心首页用到的技术，实现了上面我说的模块的发布与页面的发布分离，当然，额外的可能需要有个配置的地方。 [![容器化.png](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/8e492fc87f2bc8ef761689b215d4a392.png "容器化.png")](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/8e492fc87f2bc8ef761689b215d4a392.png) 关键技术点：
+*   可怜的zcache到达率，发布一次回到解放前。 其实在众多的搭建体系里面已经有类似的技术了，那就是编写模块，提取依赖，并把各个依赖发布到cdn，然后把各个模块combo后加载并执行。 下面这个图是我们充值中心首页用到的技术，实现了上面我说的模块的发布与页面的发布分离，当然，额外的可能需要有个配置的地方。 [![容器化.png](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/8e492fc87f2bc8ef761689b215d4a392.png "容器化.png")](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/8e492fc87f2bc8ef761689b215d4a392.png) 关键技术点：
 *   相关模块包括依赖的模块需要都是rax 体系的模块
 *   解析依赖（deps.json）并去除重复依赖
 *   combo cdn url
@@ -162,7 +162,7 @@ weex 下没有script标签，要使用就需要hack。
 ### [](#11)3.2 解析依赖并combo url
 
 这一块我写了一个工具可以完成上述功能。
-[![Snip20180223_1.png](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/e91d100f2088eaae6f9f16e42eafa4d1.png "Snip20180223_1.png")](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/e91d100f2088eaae6f9f16e42eafa4d1.png)
+[![Snip20180223_1.png](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/e91d100f2088eaae6f9f16e42eafa4d1.png "Snip20180223_1.png")](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/e91d100f2088eaae6f9f16e42eafa4d1.png)
 
 3.3 下载并执行
 

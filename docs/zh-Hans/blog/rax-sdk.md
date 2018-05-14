@@ -71,7 +71,7 @@ import stream from '@weex-module/stream';
 
 stream.fetch({
   method: 'GET',
-  url: 'http://httpbin.org/get',
+  url: '//httpbin.org/get',
   type:'json',
 }, function responseCallback(response) {
   console.log(response);

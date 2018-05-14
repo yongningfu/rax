@@ -184,7 +184,7 @@ JS Service 是一个很久以前 weex 就已经支持的功能，在淘宝大促
 
 ### [](#4)千牛无线 QAP 应用（跟随发版，QA 介入，白名单测试，动态更新）
 
-[千牛无线 QAP 应用](http://mqap.open.taobao.com/doc.htm#?docType=1&docId=107197) 是三方服务商（ISV）开发移动端插件的平台。其中 nuke 定制版本以及定制的 QAP-SDK 作为 JS 基础组件库，需要 Service 化且需要支持动态更新的需求。
+[千牛无线 QAP 应用](//mqap.open.taobao.com/doc.htm#?docType=1&docId=107197) 是三方服务商（ISV）开发移动端插件的平台。其中 nuke 定制版本以及定制的 QAP-SDK 作为 JS 基础组件库，需要 Service 化且需要支持动态更新的需求。
 
 ISV 业务多且复杂，以 【旺店交易】插件为例，某一个版本的业务代码，有 60+ JS bundle 入口（没错，与淘系导购类页面根本不是一个量级），每一个 bundle 需要引入的 80% 都是库文件，若 1 个文件完整压缩后是 200K , 那么整个插件 zip 包的体积是 12M ！！ 如果使用 JS Service，那么插件体积就会减小到 2.4M。目前所有的 QAP 插件都已覆盖。
 

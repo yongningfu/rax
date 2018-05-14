@@ -26,7 +26,7 @@ author: 亚城
 Parallax 滚动视差动画。
 用于呈现滚动视差效果: 随着用户滚动页面，一些组件会随着滚动产生动画视差效果，如放大/缩小、位移、背景色/透明度/模糊渐变等
 
-![](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/5cba5521d6192d3415b016e946d6d21c.gif)
+![](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/5cba5521d6192d3415b016e946d6d21c.gif)
 
 ### rax-canvas
 

@@ -65,4 +65,4 @@ Rax 团队敬上。
 
 
 
-参考文章：http://taobaofed.org/blog/2017/02/10/why-rax/
+参考文章：//taobaofed.org/blog/2017/02/10/why-rax/

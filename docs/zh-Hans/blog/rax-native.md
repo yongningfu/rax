@@ -24,7 +24,7 @@ RN: Learn once, write anywhere
 
 Rax 的使用方式和 RN 类似，RN 基于开源 JavaScript 库 React.js 来开发 iOS 和 Android 原生 App，在 JavaScript 中用 React 抽象操作系统原生的 UI 组件，代替 DOM 元素来渲染，比如以 View 取代 div，以 Image 替代 img 等（Rax 此处步调一致）。
 
-![image | center](http://img2.tbcdn.cn/L1/461/1/14e53ead86ead4d3355813e935072df0742a2c95)
+![image | center](//img2.tbcdn.cn/L1/461/1/14e53ead86ead4d3355813e935072df0742a2c95)
 
 一次学习，便可以编写 iOS 和 Android 两端的代码，这是 RN 的理念。与 RN 不同，Rax 在靠拢 RN 规范的同时，还做了另外一件事情就是跨端，让一次学习变成了一次编写。
 
@@ -38,7 +38,7 @@ Weex: write once run anywhere
 
 Rax 在 Native 端的背后实现则是 Weex，Weex 是一款轻量级的移动端跨平台动态性技术解决方案
 
-![image | center](http://img1.tbcdn.cn/L1/461/1/dff0329b60fe0637fa286a58a2de4f41497407cf)
+![image | center](//img1.tbcdn.cn/L1/461/1/dff0329b60fe0637fa286a58a2de4f41497407cf)
 
 （图引自 ppt《weex-前端》by 子宽/饮源）
 
@@ -86,7 +86,7 @@ createInstance 最后 sendTasks 实际上是调用 Weex 仓库 runtime/config.js
 
 Weex 在 JS 端有一层 virtual-DOM 的设计，这一层设计一方面使得 Weex 能够通过 JS 控制 native 的视图层，另外也提供了一个相对中立的规范，供上层 JS 框架调用。
 
-![](http://img2.tbcdn.cn/L1/461/1/d3562f1fc42fc59767ff05edff11f6e691ad5c86)
+![](//img2.tbcdn.cn/L1/461/1/d3562f1fc42fc59767ff05edff11f6e691ad5c86)
 (图片引自《Weex 中的 virtual-DOM 介绍》 by 勾股)
 
 我们在 Weex 中所能感受到的各种视觉效果和交互效果，实际上都是通过这样的 virtual-DOM 结构进行分解和执行的。virtual-DOM 的设计很大程度上借鉴了 HTML DOM 的设计，不论从 API 还是 class，但做了一定的简化和取舍，主要包括以下几点：
@@ -115,7 +115,7 @@ Weex 中样式使用限制包括
 *   文本样式只能作用于 Text 标签，如 fontSize
 *   支持的样式属性有限，如不支持 z-index
 
-Weex 对于 CSS 的支持相比 Web 弱了很多，很多酷炫的 CSS 必杀技在 Weex 上是不太好施展拳脚的，所以在我们写样式之前最好能先读一读 Weex 的 [通用样式](http://weex.apache.org/cn/references/common-style.html) 和 [文本样式](http://weex.apache.org/cn/references/text-style.html)
+Weex 对于 CSS 的支持相比 Web 弱了很多，很多酷炫的 CSS 必杀技在 Weex 上是不太好施展拳脚的，所以在我们写样式之前最好能先读一读 Weex 的 [通用样式](//weex.apache.org/cn/references/common-style.html) 和 [文本样式](//weex.apache.org/cn/references/text-style.html)
 
 **单位**
 
@@ -153,7 +153,7 @@ iOS UITableView
 
 UITableView 是一个以行数据概念实现的列表，每一行数据都是一个 UITableViewCell。
 为了性能上更优，利用有限的结构动态切换其内容来尽可能减少资源占用，以达到 cell 复用。
-UITableView内部有一个缓存池，初始化时使用 initWithStyle:(UITableViewCellStyle) reuseIdentifier:(NSString *) 方法指定一个可重用标识，就可以将这个 cell 放到缓存池。然后在使用时使用指定的标识去缓存池中取得对应的 cell 然后修改 cell 内容即可。以达到滚动时创建的 cell 地址是初始化时已经创建的。（详细不展开，原理在[这里](http://www.cnblogs.com/kenshincui/p/3931948.html)）
+UITableView内部有一个缓存池，初始化时使用 initWithStyle:(UITableViewCellStyle) reuseIdentifier:(NSString *) 方法指定一个可重用标识，就可以将这个 cell 放到缓存池。然后在使用时使用指定的标识去缓存池中取得对应的 cell 然后修改 cell 内容即可。以达到滚动时创建的 cell 地址是初始化时已经创建的。（详细不展开，原理在[这里](//www.cnblogs.com/kenshincui/p/3931948.html)）
 
 ### [](#图片 "图片")图片
 

@@ -103,7 +103,7 @@ WebP，是一种支持有损压缩和无损压缩的图片文件格式，派生�
 
 WebP 更高的压缩比意味着更高的解码开销，解码 WebP 是否造成 CPU 的过大压力，从而得不偿失呢？我们使用下面这张 250x250 的图片进行试验。这张图片既有较细碎的纹理，也有大面积的色块，较为适合研究图片解码的问题。
 
-[![](http://gw.alicdn.com/tps/TB1kLJjLVXXXXXnaXXXXXXXXXXX-250-250.png)](http://gw.alicdn.com/tps/TB1kLJjLVXXXXXnaXXXXXXXXXXX-250-250.png)
+[![](//gw.alicdn.com/tps/TB1kLJjLVXXXXXnaXXXXXXXXXXX-250-250.png)](//gw.alicdn.com/tps/TB1kLJjLVXXXXXnaXXXXXXXXXXX-250-250.png)
 
 使用 PNG24 和中等压缩比的 JPG 格式进行比较。
 
@@ -295,8 +295,8 @@ prefetch.addTask(url, ignoreParamsList);
 
 
     ```
-    http://m.taobao.com/test?itemId=1
-    http://m.taobao.com/test?itemId=2
+    //m.taobao.com/test?itemId=1
+    //m.taobao.com/test?itemId=2
 
     ```
 
@@ -452,8 +452,8 @@ JS Bundle 的大小直接影响了 Android 下 js 执行时间，代码量每增
 
 |  | 大小 | firstScreenJSFExecureTime（ms） | 首屏时间（ms） |
 | --- | --- | --- | --- |
-| [完整 bundle](http://groups.alidemo.cn/raxjs/demo-market/demo/neizhibao/bundle.full.js) | 259k | 397 | 674 |
-| [内置 bundle](http://groups.alidemo.cn/raxjs/demo-market/demo/neizhibao/bundle.full-min2.js) | 61k | 137 | 360 |
+| [完整 bundle](//groups.alidemo.cn/raxjs/demo-market/demo/neizhibao/bundle.full.js) | 259k | 397 | 674 |
+| [内置 bundle](//groups.alidemo.cn/raxjs/demo-market/demo/neizhibao/bundle.full-min2.js) | 61k | 137 | 360 |
 
 
 同时 JS service 可以动态下发，更新起来更加及时方便（推荐还是跟随客户端发版）。
@@ -764,7 +764,7 @@ Weex 容器有两个上下文，一个是 Native Context，一个是 JS Context�
 
 同时，对于 list 的滑动帧率，我们也做了优化处理，进行了异步绘制，将 view 中要显示的内容，包括背景色、透明底、边框、圆角、文字等，提前在异步线程绘制出来，形成一张图片。这样当用户真正往下滑的时候， 只需要在主线程做两件事：创建 native view 和 把绘制好的图片设置到 view 上。
 
-[![](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/c3e5c3d310bc1803f65cb12fb94501cb)](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/c3e5c3d310bc1803f65cb12fb94501cb)
+[![](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/c3e5c3d310bc1803f65cb12fb94501cb)](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/c3e5c3d310bc1803f65cb12fb94501cb)
 
 而 scroller 在 Native 中对应的是 UIScrollView/ScrollView， 加载以后会把所有元素都渲染出来，如果列表较长，一定程度上会拉长首屏渲染时间以及首屏可操作时间，同时首屏就把列表所有图片加载出来一定程度上也会带来一些网络、内存的压力。同时 scroller 过长时，由于是一次性渲染，在较低端机器上，可能会导致 crash。
 
@@ -780,7 +780,7 @@ ListView 中的每个 cell 需要尽可能细粒度的拆分，保证每个 cell
 
 从 JS 的 DOM JSON 到 Native View 的 render 过程来看。
 
-[![](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/34edd57973c21d1ff00862d7309c55bf)](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/34edd57973c21d1ff00862d7309c55bf)
+[![](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/34edd57973c21d1ff00862d7309c55bf)](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/34edd57973c21d1ff00862d7309c55bf)
 
 整个 render 过程包含六步
 
@@ -797,11 +797,11 @@ ListView 中的每个 cell 需要尽可能细粒度的拆分，保证每个 cell
 
 当层级嵌套过高时，会增加客户端的 crash 风险，尤其是 Android 的低端机器。以真实的业务为例，当前套层级达到 20 层后，其 Android crash 率显著上涨。
 
-[![](http://gw.alicdn.com/tfs/TB1NN8ZOFXXXXaZXFXXXXXXXXXX-703-415.png_600x600)](http://gw.alicdn.com/tfs/TB1NN8ZOFXXXXaZXFXXXXXXXXXX-703-415.png_600x600)
+[![](//gw.alicdn.com/tfs/TB1NN8ZOFXXXXaZXFXXXXXXXXXX-703-415.png_600x600)](//gw.alicdn.com/tfs/TB1NN8ZOFXXXXaZXFXXXXXXXXXX-703-415.png_600x600)
 
 经过优化，嵌套层级减少到 14 层后，crash 率明显下降，趋于正常：
 
-[![](http://gw.alicdn.com/tfs/TB1t2HeOFXXXXabXXXXXXXXXXXX-674-339.png_600x600)](http://gw.alicdn.com/tfs/TB1t2HeOFXXXXabXXXXXXXXXXXX-674-339.png_600x600)
+[![](//gw.alicdn.com/tfs/TB1t2HeOFXXXXabXXXXXXXXXXXX-674-339.png_600x600)](//gw.alicdn.com/tfs/TB1t2HeOFXXXXabXXXXXXXXXXXX-674-339.png_600x600)
 
 #### [](#47)查看嵌套层级
 
@@ -813,11 +813,11 @@ ListView 中的每个 cell 需要尽可能细粒度的拆分，保证每个 cell
 
     目前的手淘 debug 包都已经集成了 Weex Analyzer 工具。你只需在当前页面摇一摇即可打开 Weex Analyzer。其中提供了真实的 vdom 层级查看
 
-    [![](http://gw.alicdn.com/tfs/TB1sUF6PXXXXXXvapXXXXXXXXXX-438-652.png_400x400)](http://gw.alicdn.com/tfs/TB1sUF6PXXXXXXvapXXXXXXXXXX-438-652.png_400x400)
+    [![](//gw.alicdn.com/tfs/TB1sUF6PXXXXXXvapXXXXXXXXXX-438-652.png_400x400)](//gw.alicdn.com/tfs/TB1sUF6PXXXXXXvapXXXXXXXXXX-438-652.png_400x400)
 
-*   通过 [ATS](http://ats.alibaba-inc.com/) 自动化真机测试
+*   通过 [ATS](//ats.alibaba-inc.com/) 自动化真机测试
 
-    你可以通过 [ATS](http://ats.alibaba-inc.com/) 对需要的页面进行真机测试，结果中会清楚的显式页面最大的嵌套层级。
+    你可以通过 [ATS](//ats.alibaba-inc.com/) 对需要的页面进行真机测试，结果中会清楚的显式页面最大的嵌套层级。
 
     [![](https://gw.alicdn.com/tfs/TB1PPnFir_I8KJjy1XaXXbsxpXa-2322-1184.png_720x720)](https://gw.alicdn.com/tfs/TB1PPnFir_I8KJjy1XaXXbsxpXa-2322-1184.png_720x720)
 

@@ -161,7 +161,7 @@ Text 组件传入是否预留 font-padding 的参数，如果需要处理超高�
 
 ## [](#8)Intl 处理 CLDR 信息及其兼容性
 
-[CLDR 信息](http://cldr.unicode.org/index)是指不同国家在数字，时间，单复数等制式方面差异的信息规范。在实现层面，端、后端语言通常有 ICU 工具库，前端则通常依赖 [Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) api 。在 Rax 项目中，基于此 API 封装的国际化组件有：
+[CLDR 信息](//cldr.unicode.org/index)是指不同国家在数字，时间，单复数等制式方面差异的信息规范。在实现层面，端、后端语言通常有 ICU 工具库，前端则通常依赖 [Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) api 。在 Rax 项目中，基于此 API 封装的国际化组件有：
 
 *   @ali/rax-intl (此方案暂未开放)
 
@@ -180,7 +180,7 @@ Text 组件传入是否预留 font-padding 的参数，如果需要处理超高�
 
 ![](https://img.alicdn.com/tfs/TB1XZ3OcmBYBeNjy0FeXXbnmFXa-1520-850.jpg)
 
-金额的格式，格式化，符号，展示顺序通通不一样。。。em。。。机智的我们又想到了 CLDR 规范。服务端、native 可以用格式化工具 [icu4j](http://icu-project.org/apiref/icu4j/) 做实现，前端项目我们也可以使用 Intl.NumberFormat 实现。那么，这样真的完美了吗？
+金额的格式，格式化，符号，展示顺序通通不一样。。。em。。。机智的我们又想到了 CLDR 规范。服务端、native 可以用格式化工具 [icu4j](//icu-project.org/apiref/icu4j/) 做实现，前端项目我们也可以使用 Intl.NumberFormat 实现。那么，这样真的完美了吗？
 
 
 | 国家| 语言| ICU 格式化结果| 实际使用|

@@ -166,7 +166,7 @@ if (isWeex && weexDocument && weexDocument.body) {
 扩展阅读
 
 *   [Rax 中的事件](https://alibaba.github.io/rax/guide/event-handle)
-*   [Weex 中的事件](http://weex.apache.org/cn/references/common-event.html)
+*   [Weex 中的事件](//weex.apache.org/cn/references/common-event.html)
 
 ### [](#样式 "样式")样式
 
@@ -331,7 +331,7 @@ npm run start
 
 bundle 如果缺少该 framework 声明将会有 framework 提供的 API 缺失问题。
 
-_小技巧：上面的 weex bundle 也可以这样访问 [http://h5Page地址.html?_wx_tpl:http://weexBundle地址.js](http://h5Page地址.html?_wx_tpl:http://weexBundle地址.js)_
+_小技巧：上面的 weex bundle 也可以这样访问 [//h5Page地址.html?_wx_tpl://weexBundle地址.js](//h5Page地址.html?_wx_tpl://weexBundle地址.js)_
 
 ![](https://gw.alicdn.com/tfs/TB1orW8h8TH8KJjy0FiXXcRsXXa-873-360.jpg)
 
@@ -342,7 +342,7 @@ cli 工具创建的目录结构较为简单，适合开发者进行上层定制
 ###调试环境###
 
 使用 cli 工具本地起一个调试环境，生成如下形式的页面地址：
-[http://your_page_.html?_wx_tpl=http://your_page_bundle.js](http://your_page_.html?_wx_tpl=http://your_page_bundle.js)
+[//your_page_.html?_wx_tpl=//your_page_bundle.js](//your_page_.html?_wx_tpl=//your_page_bundle.js)
 
 在浏览器环境直接访问该地址，可以得到 Web 页面；通过 Weex Playground 访问，则会返回相应的 Weex 页面。
 
