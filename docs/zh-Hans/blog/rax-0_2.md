@@ -1,6 +1,7 @@
 ---
 title: Rax 0.2 发布
 date: 20170428
+author: 亚城
 ---
 
 # Rax 0.2 发布

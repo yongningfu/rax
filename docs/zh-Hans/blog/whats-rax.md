@@ -1,6 +1,7 @@
 ---
 title: 什么是 Rax，以及 Rax 的特点
 date: 20170426
+author: 大果
 ---
 
 # 什么是 Rax，以及 Rax 的特点
