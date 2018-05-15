@@ -185,7 +185,6 @@ focusToElement 方法会尝试使指定元素获得焦点（前提是该组件�
 
 ### [](#18)设置右侧图标的时候指定朗读内容和角色
 
-<div class="highlight">
 
 ```
 // navigator.setNavBarRightItem
@@ -202,9 +201,6 @@ navigator.setNavBarRightItem({
 
 ```
 
-</div>
-
-<div class="highlight">
 
 ```
 // navigationBar.setRightItem
@@ -216,13 +212,10 @@ navigationBar.setRightItem({
 
 ```
 
-</div>
-
 ### [](#19)hc.setTBHCConfig 导航中部设置指定朗读内容和角色
 
 会场框架支持在导航条中部配置可以跳转的图片，例如在导航条嵌搜索框。需要额外传入 naviCenterAriaLabel 和 naviCenterRole 来指定朗读内容和角色。例如在导航条嵌搜索框场景，可以设置为
 
-<div class="highlight">
 
 ```
 {
@@ -232,7 +225,6 @@ navigationBar.setRightItem({
 
 ```
 
-</div>
 
 ## [](#20)Rax 开发
 
@@ -262,18 +254,6 @@ Weex 和 Rax 团队在 IOS 上的无障碍基础能力已基本完成，下一�
 ![](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/6eebca2ecfbad543fed29adeec432546.png)
 
 ## [](#24)更多
-
-### [](#25)@ali/universal-a11y
-
-[@ali/universal-a11y](//gitlab.alibaba-inc.com/universal/a11y) 提供了一些常用方法。
-
-### [](#26)Weex 无障碍能力手册
-
-[这里](https://lark.alipay.com/experience/eaqwtc/weex_dev)有更详细的介绍。
-
-### [](#27)手淘无碍化规范
-
-交互设计师@隐钰沉淀的[规范](https://udemo.alibaba-inc.com/projects/30272)，供开发者参考
 
 ### [](#28)开启 VoiceOver 测试
 

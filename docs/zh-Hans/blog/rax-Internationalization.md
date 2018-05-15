@@ -123,7 +123,6 @@ Rax 项目里的行高，大家可能都想象不到有什么坑点，那么我�
 
 如上，快速地整理了一个行高对照表，如果文字有加粗，还需要适当增加。行高与字号的关系并非线性，如果用数学公式去描述，可以表达如下：
 
-<div class="highlight">
 
 ```
  const defaultLineHeightOptimizer = fontSize =>
@@ -133,7 +132,6 @@ Rax 项目里的行高，大家可能都想象不到有什么坑点，那么我�
 
 ```
 
-</div>
 
 PS: 以上公式来自大神@雷蜜
 
@@ -185,9 +183,9 @@ Text 组件传入是否预留 font-padding 的参数，如果需要处理超高�
 
 | 国家| 语言| ICU 格式化结果| 实际使用|
 | -- | -- | -- | -- |
-| Singapore| en-SG| $10,000.00| <span style="color:#F5222D;">SGD10,000.00</span>|
-| Thailand| th| THB10,000.00| <span style="color:#F5222D;">฿10,000.00</span>|
-| Thailand| en| THB10,000.00| <span style="color:#F5222D;">฿10,000.00</span>|
+| Singapore| en-SG| $10,000.00| SGD10,000.00|
+| Thailand| th| THB10,000.00| ฿10,000.00|
+| Thailand| en| THB10,000.00| ฿10,000.00|
 | Vietnam| vi| 10.000 ₫| 10.000 ₫|
 | Vietnam| en| ₫10,000| ₫10,000|
 | Malaysia| en-MY| RM10,000.00| RM10,000.00|

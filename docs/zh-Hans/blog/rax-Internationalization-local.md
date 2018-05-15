@@ -33,7 +33,6 @@ author: 星啸
 *   C：构建时不包含文案，只包含文案的key。APP拉取文案包缓存在本地，最后在代码运行时在从APP中拉取文案内容并且展示。
 *   D：构建时不包含文案，只包含文案的key。代码运行时异步从服务器拉取多语言文案并且展示。
 
-<div class="table-contianer">
 
 | 方案 | APP改造 | 服务端改造 | 构建器脚手架改造 | 使用方 |
 | --- | --- | --- | --- | --- |
@@ -42,7 +41,6 @@ author: 星啸
 | C | 文案缓存以及读取 | 推送文案包到APP的能力 | - | 暂无 |
 | D | 提供查询语言能力 | 提供按key下发文案的接口 | - | ICBU部分七巧板应用 |
 
-</div>
 
 ICBU使用的方案和rax-i18n的思路不太一样，并不是发N份不同语种的js bundle到air，然后air判别UA来返回不同语言的bundle。
 
@@ -69,11 +67,11 @@ ICBU的WEEX多语言方案是一直只有唯一的一份bundle，而这份bundle
 
 效果图如下：
 
-[![img](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/a8379be1d5df03c9e765ce4627022a9f.png "img")](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/a8379be1d5df03c9e765ce4627022a9f.png)
+![img](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/a8379be1d5df03c9e765ce4627022a9f.png "img")]
 
-[![img](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/53c20a3e7347c2dc90713bc9c84ef25c.png "img")](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/53c20a3e7347c2dc90713bc9c84ef25c.png)
+![img](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/53c20a3e7347c2dc90713bc9c84ef25c.png "img")]
 
-[![img](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/7c287e79e5999018cc4cf1220a36c227.png "img")](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/7c287e79e5999018cc4cf1220a36c227.png)
+![img](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/7c287e79e5999018cc4cf1220a36c227.png "img")]
 
 静态文案指的是前端会写死在页面中的固定文案，常见的如Loading、End、Price、See More、Terms & Conditions等文案。ICBU的静态文案的获取思路是运营或PD预先在美杜莎（或者其他多语言平台）中录入文案，并且以tnpm包的方式发布。前端把该文案包打包进业务代码内。而在前端代码中通过key调用即可。
 
@@ -91,7 +89,7 @@ copy —>美杜莎 —> 前端根据交互稿写死文案对应的key，把文�
 
 ### [](#6)3.3 动态文案下发方案（产品等信息）
 
-[![img](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/49a68f901da8a4016cfdc43dbe228f44.png "img")](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/49a68f901da8a4016cfdc43dbe228f44.png)
+![img](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/49a68f901da8a4016cfdc43dbe228f44.png "img")]
 
 动态文案通常指**产品信息、货币信息、类目**等由服务端动态下发的文案。
 
@@ -101,9 +99,9 @@ copy —>美杜莎 —> 前端根据交互稿写死文案对应的key，把文�
 
     由于动态文案布局也有可能涉及到R2L问题，因此对动态文案，建议包裹在会处理布局的View（例如ICBU的`I18nView`）中，自动做文案的布局转换。如下图
 
-[![img](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/4a9f911c384ec3069f30ef964307d479.png "img")](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/4a9f911c384ec3069f30ef964307d479.png)
+![img](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/4a9f911c384ec3069f30ef964307d479.png "img")]
 
-[![img](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/2719be37b1cdb2b89725db3530f68809.png "img")](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/2719be37b1cdb2b89725db3530f68809.png)
+![img](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/2719be37b1cdb2b89725db3530f68809.png "img")]
 
 1.  动态文案在mtop和在一般jsonp接口的使用方式。
 
@@ -117,13 +115,13 @@ Banner类型需要做多语言的方式有两种，一种是**对Banner做图文
 
 “有没有”的问题在于目前banner都是由UED统一设计好再交付的，而UED在设计的时候，通常是以英语去做设计的，如果不做图文分离，那么对于多语言场馆而言，用户第一眼看到的就是英文banner，然后才是本地化的浏览内容。实际效果如下：
 
-[![img](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/7b83556f20833734a11a12cb69988625.png "img")](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/7b83556f20833734a11a12cb69988625.png)
+![img](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/7b83556f20833734a11a12cb69988625.png "img")]
 
 因此图文分离对于本地化的意义是不亚于静态和动态文案下发的研究的。ICBU的实践中，是前端和UED协商好Banner的文字范围，然后UED输出banner底图，运营输出文案，最后由前端去拼合。
 
 另一个是效率问题：纵使UED可以通过一定的规范去输出banner，但是如果每一个图文分离的需求都需要前端介入，重新开发一套模板。那么效率就太低了。在三月大促中，为了部分解决这个问题，开发了基于schema生成图文分离banner的组件。前端只需要大致编写schema，就可以具体生成不同的图文分离组件。具体如下：
 
-[![image.png](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/f055bff4bb637d507ded54491ded54d1.png "image.png")](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/f055bff4bb637d507ded54491ded54d1.png)<a href="" target="_blank"></a>
+![image.png](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/f055bff4bb637d507ded54491ded54d1.png "image.png")
 
 ### [](#8)3.5 内容资讯文案
 

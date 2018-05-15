@@ -82,7 +82,7 @@ JS Service 是一个很久以前 weex 就已经支持的功能，在淘宝大促
 
     构建出的目录如下：
 
-    [![](https://img.alicdn.com/tfs/TB1IXtmaKuSBuNjy1XcXXcYjFXa-356-155.jpg)](https://img.alicdn.com/tfs/TB1IXtmaKuSBuNjy1XcXXcYjFXa-356-155.jpg)
+    ![](https://img.alicdn.com/tfs/TB1IXtmaKuSBuNjy1XcXXcYjFXa-356-155.jpg)]
 
     再按照 [service 编写的文档](https://weex.apache.org/cn/references/js-service.html#bian-xie-yi-ge-js-service) 的要求，把上面的 `weex-nuke.buildin.js` 打包成一个 JS Service 文件，命名为 `module-service.js` 。
 
@@ -113,7 +113,7 @@ JS Service 是一个很久以前 weex 就已经支持的功能，在淘宝大促
 *   客户端添加注册 service 逻辑
 
     把上述的 `module-service.js` 放到客户端约定目录，添加注册相关代码。这一步需要找上一位热爱工作的客户端同 (ji) 学 (you) 完成。iOS 相关代码示例如下：
-    [![](https://img.alicdn.com/tfs/TB1_DFoaKuSBuNjy1XcXXcYjFXa-1160-426.png)](https://img.alicdn.com/tfs/TB1_DFoaKuSBuNjy1XcXXcYjFXa-1160-426.png)
+    ![](https://img.alicdn.com/tfs/TB1_DFoaKuSBuNjy1XcXXcYjFXa-1160-426.png)
 
     走完这一步，基本大功告成啦。
 
@@ -218,14 +218,12 @@ Lazada app 实践中，构建流程等都类似，目前没有开启动态更新
 
 ![](https://img.alicdn.com/tfs/TB1.WeXaQyWBuNjy0FpXXassXXa-2878-1398.jpg)
 
-<div class="table-contianer">
 
 | 文件 | service 使用前 | service 使用后 |
 | --- | --- | --- |
 | payment.js | 839 K | 488 K |
 | payment-result.js | 730 K | 378 K |
 
-</div>
 
 ## [](#6)抛砖
 

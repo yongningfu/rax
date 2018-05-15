@@ -93,7 +93,7 @@ HTTPDNS 是面向无线端的域名解析服务，与传统走 UDP 协议的 DNS
 
 WebP，是一种支持有损压缩和无损压缩的图片文件格式，派生自图像编码格式 VP8。根据 Google 官方的数据，无损压缩后的 WebP 比 PNG 文件减少了了 26％ 的大小，有损压缩在具有同等 SSIM 索引的情况下 WebP 比 JPEG 文件[减少了 25 - 34% 的大小](https://developers.google.com/speed/webp/docs/webp_study)。WebP 同时也支持无损透明度（也叫做 alpha 通道）和动画格式。
 
-[![](https://gw.alicdn.com/tfs/TB1sXGPRVXXXXXNXXXXXXXXXXXX-796-655.png)](https://gw.alicdn.com/tfs/TB1sXGPRVXXXXXNXXXXXXXXXXXX-796-655.png)
+![](https://gw.alicdn.com/tfs/TB1sXGPRVXXXXXNXXXXXXXXXXXX-796-655.png)
 
 可以明显看到，利用 WebP 格式，一张 PNG 的 Banner 图片，体积减少了 80%。利用 WebP 格式，可以大幅减少图片体积，节约带宽，提高加载性能。目前我们的 APP 已全面支持 WebP 格式，你可以放心的使用，同时我们也提供了自动化的组件，帮你处理 WebP 格式。
 
@@ -103,7 +103,7 @@ WebP，是一种支持有损压缩和无损压缩的图片文件格式，派生�
 
 WebP 更高的压缩比意味着更高的解码开销，解码 WebP 是否造成 CPU 的过大压力，从而得不偿失呢？我们使用下面这张 250x250 的图片进行试验。这张图片既有较细碎的纹理，也有大面积的色块，较为适合研究图片解码的问题。
 
-[![](//gw.alicdn.com/tps/TB1kLJjLVXXXXXnaXXXXXXXXXXX-250-250.png)](//gw.alicdn.com/tps/TB1kLJjLVXXXXXnaXXXXXXXXXXX-250-250.png)
+![](//gw.alicdn.com/tps/TB1kLJjLVXXXXXnaXXXXXXXXXXX-250-250.png)
 
 使用 PNG24 和中等压缩比的 JPG 格式进行比较。
 
@@ -197,7 +197,7 @@ WebP 更高的压缩比意味着更高的解码开销，解码 WebP 是否造成
 
 你可以接入 命运石(搭建系统)，用数据驱动渲染。利用命运石搭建体系的能力，将不同投放数据源的数据统一整合，帮你将首屏数据合并为一个接口。其余内容你可以放到次屏，通过翻页参数控制。前端只需要负责模块的渲染逻辑，至于模块内容、模块顺序、个性化等完全由命运石的数据逻辑控制。
 
-[![](https://img.alicdn.com/tfs/TB1Xq1nRpXXXXXjaXXXXXXXXXXX-1446-851.png_720x720)](https://img.alicdn.com/tfs/TB1Xq1nRpXXXXXjaXXXXXXXXXXX-1446-851.png_720x720)
+![](https://img.alicdn.com/tfs/TB1Xq1nRpXXXXXjaXXXXXXXXXXX-1446-851.png_720x720)
 
 除了上面接口收敛的好处外，接入命运石，你还可以享受到：
 
@@ -212,7 +212,7 @@ WebP 更高的压缩比意味着更高的解码开销，解码 WebP 是否造成
 
 #### [](#16)流程方案
 
-[![](https://gw.alicdn.com/tfs/TB11GYSRVXXXXbRaXXXXXXXXXXX-506-538.png)](https://gw.alicdn.com/tfs/TB11GYSRVXXXXbRaXXXXXXXXXXX-506-538.png)
+![](https://gw.alicdn.com/tfs/TB11GYSRVXXXXbRaXXXXXXXXXXX-506-538.png)
 
 该方案在客户端有两部分组成。
 
@@ -229,7 +229,7 @@ WebP 更高的压缩比意味着更高的解码开销，解码 WebP 是否造成
 
 根据上述流程你会发现，当资源 zip 包下载到用户手机本地后，才能享受到预加载带来的加载性能提升。
 
-[![](https://gw.alicdn.com/tfs/TB1oIEaRVXXXXXnaXXXXXXXXXXX-804-432.png)](https://gw.alicdn.com/tfs/TB1oIEaRVXXXXXnaXXXXXXXXXXX-804-432.png)
+![](https://gw.alicdn.com/tfs/TB1oIEaRVXXXXXnaXXXXXXXXXXX-804-432.png)
 
 因此如何保证资源 zip 包的尽快触达是十分重要的。
 
@@ -260,7 +260,7 @@ WebP 更高的压缩比意味着更高的解码开销，解码 WebP 是否造成
 
 查看页面资源是否正确的加入了预加载资源包里，你可以打开 AWP的 PACKAGE管理 > 离线资源 > 解combo查询，输入查询地址，如果是“下线”状态，则代表资源没有预加载成功，不会被推送到手淘客户端，此时，你需要中心操作，将页面资源加入。
 
-[![](https://img.alicdn.com/tps/TB1GFC1PXXXXXaTXpXXXXXXXXXX-1042-135.png)](https://img.alicdn.com/tps/TB1GFC1PXXXXXaTXpXXXXXXXXXX-1042-135.png)
+![](https://img.alicdn.com/tps/TB1GFC1PXXXXXaTXpXXXXXXXXXX-1042-135.png)
 
 #### [](#19)资源包是否正确触达客户端
 
@@ -272,7 +272,7 @@ WebP 更高的压缩比意味着更高的解码开销，解码 WebP 是否造成
 
 选择手淘 debug 包，访问需要验证的页面。“摇一摇”唤起 Weex Analyzer，查看 Weex 性能指标，其中 `weex_bundlejs_requestType` 为 `packageApp` 时表示命中了本地的预加载资源，如果为 `network`，则资源没有命中。
 
-[![](https://img.alicdn.com/tps/TB12cevPXXXXXX3aXXXXXXXXXXX-883-748.jpg_600x600)](https://img.alicdn.com/tps/TB12cevPXXXXXX3aXXXXXXXXXXX-883-748.jpg_600x600)
+![](https://img.alicdn.com/tps/TB12cevPXXXXXX3aXXXXXXXXXXX-883-748.jpg_600x600)
 
 #### [](#21)查询线上真实触达率
 
@@ -304,11 +304,11 @@ prefetch.addTask(url, ignoreParamsList);
 
 通过对 JS Prefetch 的设置调用，Weex 会在页面渲染过程中异步的下载该 js bundle 文件，并存储至 Cache 中。当用户访问该 js 文件时，优先从 Cache 中获取。其中如果 js bundle 本身命中 zcache，则 JS Prefetch 后续操作不会再继续执行。
 
-[![](https://gw.alicdn.com/tfscom/TB1QyguPXXXXXc5XXXXXXXXXXXX_720x720.jpg)](https://gw.alicdn.com/tfscom/TB1QyguPXXXXXc5XXXXXXXXXXXX_720x720.jpg)
+![](https://gw.alicdn.com/tfscom/TB1QyguPXXXXXc5XXXXXXXXXXXX_720x720.jpg)
 
 使用 JS Prefetch 需要你较为准确的预测用户下一跳的行为。可以通过点击热图，流量路径等辅助你进行预测判断。目前 JS Prefetch 主要用来作为 zcache 未到达时的补充，资源的缓存和预加载依然主要依靠 zcache。当然如果你对下一跳行为预测准确的话，JS Prefetch 依然能达到和 zcache 相媲美的程度。比如下面的二跳页面使用 JS Prefetch 代替 zcache。秒开率依然能达到 92%。
 
-[![](https://gw.alicdn.com/tfs/TB1K8sqigvD8KJjy0FlXXagBFXa-672-102.png)](https://gw.alicdn.com/tfs/TB1K8sqigvD8KJjy0FlXXagBFXa-672-102.png)
+![](https://gw.alicdn.com/tfs/TB1K8sqigvD8KJjy0FlXXagBFXa-672-102.png)
 
 需要注意的是，使用 JS Prefetch 存在一定的限制：
 
@@ -320,21 +320,21 @@ prefetch.addTask(url, ignoreParamsList);
 
 数据预加载(Data Prefetch)是用来将页面中需要请求的数据提前请求。大幅缩短用户看到页面效数据的等待时间，提高用户体验。
 
-[![](https://img.alicdn.com/tps/TB1EdVpOpXXXXbKXXXXXXXXXXXX-934-298.png_720x720)](https://img.alicdn.com/tps/TB1EdVpOpXXXXbKXXXXXXXXXXXX-934-298.png_720x720)
+![](https://img.alicdn.com/tps/TB1EdVpOpXXXXbKXXXXXXXXXXXX-934-298.png_720x720)
 
 用户新打开一个 Weex 页面，Weex 在解析 url 时，会判断是否存在 `data_prefetch=true` 的参数，如果有，则认为该页面应用了数据预加载，然后会以页面 url 作为 key，去检索 Data Prefetch 通过 packageapp 下发的 map 映射表，其对应的 value 值既是需要 prefetch 的请求的参数。
 
-[![](https://gw.alicdn.com/tfs/TB1OKI0ih6I8KJjy0FgXXXXzVXa-958-712.png_600x600)](https://gw.alicdn.com/tfs/TB1OKI0ih6I8KJjy0FgXXXXzVXa-958-712.png_600x600)
+![](https://gw.alicdn.com/tfs/TB1OKI0ih6I8KJjy0FgXXXXzVXa-958-712.png_600x600)
 
 Weex 使用该参数发起请求，并将请求结果写入 Storage 中。此时页面 JS 并行的在执行，当使用数据预加载发起请求时，会直接从 Storage 读取请求结果（会轮训等待 1s，如果获取不到则请求线上）。
 
 根据过去业务的真实测试（采样率 10%）。大约节约 80% 的请求时间。
 
-[![](https://img.alicdn.com/tps/TB1WjZOOXXXXXX4aXXXXXXXXXXX-1044-100.png_720x720)](https://img.alicdn.com/tps/TB1WjZOOXXXXXX4aXXXXXXXXXXX-1044-100.png_720x720)
+![](https://img.alicdn.com/tps/TB1WjZOOXXXXXX4aXXXXXXXXXXX-1044-100.png_720x720)
 
 实际体验也能明显发现感官上的差异，同样的测试环境，数据预加载接入 ifashion 首页做对比，网址列表中第二个链接使用了数据预加载，而第一个链接没使用。
 
-[![](https://gw.alicdn.com/tps/TB1qOQRPFXXXXXVXFXXXXXXXXXX-320-564.gif)](https://gw.alicdn.com/tps/TB1qOQRPFXXXXXVXFXXXXXXXXXX-320-564.gif)
+![](https://gw.alicdn.com/tps/TB1qOQRPFXXXXXVXFXXXXXXXXXX-320-564.gif)
 
 #### [](#30)注意事项
 
@@ -347,7 +347,7 @@ Weex 使用该参数发起请求，并将请求结果写入 Storage 中。此时
 
 JS Bundle 的大小直接影响了 Android 下 js 执行时间，代码量每增加 1k，纯渲染时间增加 1-2ms，渲染性能和代码量 Android下是强相关的。
 
-[![](https://static.dingtalk.com/media/lALOfsgzqM0BhM0CDA_524_388.png_620x10000.jpg)](https://static.dingtalk.com/media/lALOfsgzqM0BhM0CDA_524_388.png_620x10000.jpg)
+![](https://static.dingtalk.com/media/lALOfsgzqM0BhM0CDA_524_388.png_620x10000.jpg)
 
 同时 bundle 过大也会占用 zcache 资源，对于 web 资源不会推送 zcache 来说，也会增加资源的加载时间，因此减少 bundle 大小，对于页面秒开还是十分重要的。
 
@@ -400,7 +400,7 @@ JS Bundle 的大小直接影响了 Android 下 js 执行时间，代码量每增
 
     如果你接入了门神(系统)流程，那在你预发代码时，门神的 lint 规则会帮你检测依赖引用，结果会在 Rax Lint 一项中以 warning 形式展示。
 
-    [![](https://gw.alicdn.com/tfs/TB1ntEaf5qAXuNjy1XdXXaYcVXa-2728-828.png_720x720)](https://gw.alicdn.com/tfs/TB1ntEaf5qAXuNjy1XdXXaYcVXa-2728-828.png_720x720)
+    ![](https://gw.alicdn.com/tfs/TB1ntEaf5qAXuNjy1XdXXaYcVXa-2728-828.png_720x720)
 
 *   依赖去重
 
@@ -427,11 +427,11 @@ JS Bundle 的大小直接影响了 Android 下 js 执行时间，代码量每增
 
     如果你使用的是 def 工程化体系，你可以方便的可视化的看到重复依赖的部分。比如通过 `def dev` 后的控制台信息
 
-    [![](https://gw.alicdn.com/tfs/TB1Dll4ayqAXuNjy1XdXXaYcVXa-727-248.png)](https://gw.alicdn.com/tfs/TB1Dll4ayqAXuNjy1XdXXaYcVXa-727-248.png)
+    ![](https://gw.alicdn.com/tfs/TB1Dll4ayqAXuNjy1XdXXaYcVXa-727-248.png)
 
     或者通过 `def dev` 时开启的本地可视化的开发平台页面进行排查，通过其中的资源分析，你可以直观的看到重复依赖的部分
 
-    [![](https://gw.alicdn.com/tfs/TB1uzUJcRfH8KJjy1XbXXbLdXXa-512-465.png)](https://gw.alicdn.com/tfs/TB1uzUJcRfH8KJjy1XbXXbLdXXa-512-465.png)
+    ![](https://gw.alicdn.com/tfs/TB1uzUJcRfH8KJjy1XbXXbLdXXa-512-465.png)
 
 ##### [](#33)JS Service 内置
 
@@ -607,7 +607,7 @@ shouldComponentUpdate(nextProps, nextState) {
 
 这种情况下，Rax/React 无法识别每一个节点，不能保障之前渲染好的子节点（A-E）保持不变，更新渲染会比较低效，实际情况就变成了将 C 更新成 F，D 更新成 C，E 更新成 D，最后再插入一个 E 节点。这种情况下有些子节点会被销毁重新 Mount，性能差。
 
-[![](https://gw.alicdn.com/tfs/TB14xuniwvD8KJjSsplXXaIEFXa-572-215.png)](https://gw.alicdn.com/tfs/TB14xuniwvD8KJjSsplXXaIEFXa-572-215.png)
+![](https://gw.alicdn.com/tfs/TB14xuniwvD8KJjSsplXXaIEFXa-572-215.png)
 
 如果你在对应的子节点加上 key 标识，Rax/React 就能通过 Diff 算法来进行识别进行高效地更新。
 
@@ -636,7 +636,7 @@ shouldComponentUpdate(nextProps, nextState) {
 
 这种情况下只做 F 节点的插入，其余子节点不会被重新 Mount，渲染性能也会有所提高。
 
-[![](https://gw.alicdn.com/tfs/TB1BrSSiBDH8KJjSspnXXbNAVXa-565-201.png)](https://gw.alicdn.com/tfs/TB1BrSSiBDH8KJjSspnXXbNAVXa-565-201.png)
+![](https://gw.alicdn.com/tfs/TB1BrSSiBDH8KJjSspnXXbNAVXa-565-201.png)
 
 因此，在渲染一些列表数组数据的时候，你需要在子元素标签上加上 key 属性，且尽量保证 key 属性的值是唯一的可预测的，尽量使用数据自带的一些 id 值，或者自定义保证唯一的字符串。
 
@@ -764,7 +764,7 @@ Weex 容器有两个上下文，一个是 Native Context，一个是 JS Context�
 
 同时，对于 list 的滑动帧率，我们也做了优化处理，进行了异步绘制，将 view 中要显示的内容，包括背景色、透明底、边框、圆角、文字等，提前在异步线程绘制出来，形成一张图片。这样当用户真正往下滑的时候， 只需要在主线程做两件事：创建 native view 和 把绘制好的图片设置到 view 上。
 
-[![](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/c3e5c3d310bc1803f65cb12fb94501cb)](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/c3e5c3d310bc1803f65cb12fb94501cb)
+![](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/c3e5c3d310bc1803f65cb12fb94501cb)
 
 而 scroller 在 Native 中对应的是 UIScrollView/ScrollView， 加载以后会把所有元素都渲染出来，如果列表较长，一定程度上会拉长首屏渲染时间以及首屏可操作时间，同时首屏就把列表所有图片加载出来一定程度上也会带来一些网络、内存的压力。同时 scroller 过长时，由于是一次性渲染，在较低端机器上，可能会导致 crash。
 
@@ -780,7 +780,7 @@ ListView 中的每个 cell 需要尽可能细粒度的拆分，保证每个 cell
 
 从 JS 的 DOM JSON 到 Native View 的 render 过程来看。
 
-[![](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/34edd57973c21d1ff00862d7309c55bf)](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/34edd57973c21d1ff00862d7309c55bf)
+![](//ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/34edd57973c21d1ff00862d7309c55bf)
 
 整个 render 过程包含六步
 
@@ -797,11 +797,11 @@ ListView 中的每个 cell 需要尽可能细粒度的拆分，保证每个 cell
 
 当层级嵌套过高时，会增加客户端的 crash 风险，尤其是 Android 的低端机器。以真实的业务为例，当前套层级达到 20 层后，其 Android crash 率显著上涨。
 
-[![](//gw.alicdn.com/tfs/TB1NN8ZOFXXXXaZXFXXXXXXXXXX-703-415.png_600x600)](//gw.alicdn.com/tfs/TB1NN8ZOFXXXXaZXFXXXXXXXXXX-703-415.png_600x600)
+![](//gw.alicdn.com/tfs/TB1NN8ZOFXXXXaZXFXXXXXXXXXX-703-415.png_600x600)
 
 经过优化，嵌套层级减少到 14 层后，crash 率明显下降，趋于正常：
 
-[![](//gw.alicdn.com/tfs/TB1t2HeOFXXXXabXXXXXXXXXXXX-674-339.png_600x600)](//gw.alicdn.com/tfs/TB1t2HeOFXXXXabXXXXXXXXXXXX-674-339.png_600x600)
+![](//gw.alicdn.com/tfs/TB1t2HeOFXXXXabXXXXXXXXXXXX-674-339.png_600x600)
 
 #### [](#47)查看嵌套层级
 
@@ -813,13 +813,13 @@ ListView 中的每个 cell 需要尽可能细粒度的拆分，保证每个 cell
 
     目前的手淘 debug 包都已经集成了 Weex Analyzer 工具。你只需在当前页面摇一摇即可打开 Weex Analyzer。其中提供了真实的 vdom 层级查看
 
-    [![](//gw.alicdn.com/tfs/TB1sUF6PXXXXXXvapXXXXXXXXXX-438-652.png_400x400)](//gw.alicdn.com/tfs/TB1sUF6PXXXXXXvapXXXXXXXXXX-438-652.png_400x400)
+    ![](//gw.alicdn.com/tfs/TB1sUF6PXXXXXXvapXXXXXXXXXX-438-652.png_400x400)
 
 *   通过 [ATS](//ats.alibaba-inc.com/) 自动化真机测试
 
     你可以通过 [ATS](//ats.alibaba-inc.com/) 对需要的页面进行真机测试，结果中会清楚的显式页面最大的嵌套层级。
 
-    [![](https://gw.alicdn.com/tfs/TB1PPnFir_I8KJjy1XaXXbsxpXa-2322-1184.png_720x720)](https://gw.alicdn.com/tfs/TB1PPnFir_I8KJjy1XaXXbsxpXa-2322-1184.png_720x720)
+    ![](https://gw.alicdn.com/tfs/TB1PPnFir_I8KJjy1XaXXbsxpXa-2322-1184.png_720x720)
 
 ## [](#48)内存
 
@@ -850,15 +850,15 @@ ListView 中的每个 cell 需要尽可能细粒度的拆分，保证每个 cell
 
 内存的测试也是十分简单，iOS 上你可以通过手淘 debug 包中的掌中测，方便的查看页面的内存指标。
 
-[![](https://gw.alicdn.com/tfs/TB1kv2iiwvD8KJjy0FlXXagBFXa-620-1102.png_600x600)](https://gw.alicdn.com/tfs/TB1kv2iiwvD8KJjy0FlXXagBFXa-620-1102.png_600x600)
+![](https://gw.alicdn.com/tfs/TB1kv2iiwvD8KJjy0FlXXagBFXa-620-1102.png_600x600)
 
 对于 Android 来说，你可以用下面命令来获取当前时刻手淘的内存占用量（取 Heap Alloc）
 
-[![](https://private-alipayobjects.alipay.com/alipay-rmsdeploy-image/skylark/png/a0b38ef0-84b4-4463-9fef-e97f2c6685a8.png)](https://private-alipayobjects.alipay.com/alipay-rmsdeploy-image/skylark/png/a0b38ef0-84b4-4463-9fef-e97f2c6685a8.png)
+![](https://private-alipayobjects.alipay.com/alipay-rmsdeploy-image/skylark/png/a0b38ef0-84b4-4463-9fef-e97f2c6685a8.png)
 
 同时使用 Android Studio的 Android Monitor 可以很方便的获取 Java Heap。通过手动 GC，你可以验证页面退出后 Java Heap 是否回归原始水位（增量不超过 2M）
 
-[![](https://private-alipayobjects.alipay.com/alipay-rmsdeploy-image/skylark/png/1706e8e9-a4f1-4e55-8deb-4748a4809b7e.png)](https://private-alipayobjects.alipay.com/alipay-rmsdeploy-image/skylark/png/1706e8e9-a4f1-4e55-8deb-4748a4809b7e.png)
+![](https://private-alipayobjects.alipay.com/alipay-rmsdeploy-image/skylark/png/1706e8e9-a4f1-4e55-8deb-4748a4809b7e.png)
 
 ### [](#51)视频优化
 

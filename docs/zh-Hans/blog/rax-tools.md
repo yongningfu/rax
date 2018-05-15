@@ -226,7 +226,7 @@ if(process.env.NODE_ENV === 'developement'){
 
 同时，文件组织的方式也需要做稍许变更，如下图：
 
-[![image.png | center | 300x106](https://gw.alipayobjects.com/zos/skylark/b7a84d9f-617e-4c02-9767-574d47b4b2df/2018/png/6e34b458-5ea4-4c54-8877-22a5d7f67763.png "image.png | center | 300x106")](https://gw.alipayobjects.com/zos/skylark/b7a84d9f-617e-4c02-9767-574d47b4b2df/2018/png/6e34b458-5ea4-4c54-8877-22a5d7f67763.png)
+![image.png | center | 300x106](https://gw.alipayobjects.com/zos/skylark/b7a84d9f-617e-4c02-9767-574d47b4b2df/2018/png/6e34b458-5ea4-4c54-8877-22a5d7f67763.png]
 热更新的原理本文不再赘述了，感兴趣的同学可以移步这里 [https://www.atatech.org/articles/81931。](https://www.atatech.org/articles/81931%E3%80%82)
 
 ### [](#7)增加单测
