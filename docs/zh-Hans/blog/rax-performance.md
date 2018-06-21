@@ -306,15 +306,8 @@ prefetch.addTask(url, ignoreParamsList);
 
 ![](https://gw.alicdn.com/tfscom/TB1QyguPXXXXXc5XXXXXXXXXXXX_720x720.jpg)
 
-使用 JS Prefetch 需要你较为准确的预测用户下一跳的行为。可以通过点击热图，流量路径等辅助你进行预测判断。目前 JS Prefetch 主要用来作为 zcache 未到达时的补充，资源的缓存和预加载依然主要依靠 zcache。当然如果你对下一跳行为预测准确的话，JS Prefetch 依然能达到和 zcache 相媲美的程度。比如下面的二跳页面使用 JS Prefetch 代替 zcache。秒开率依然能达到 92%。
+使用 JS Prefetch 需要你较为准确的预测用户下一跳的行为。可以通过点击热图，流量路径等辅助你进行预测判断。目前 JS Prefetch 主要用来作为 zcache 未到达时的补充，资源的缓存和预加载依然主要依靠 zcache。当然如果你对下一跳行为预测准确的话，JS Prefetch 依然能达到和 zcache 相媲美的程度。
 
-![](https://gw.alicdn.com/tfs/TB1K8sqigvD8KJjy0FlXXagBFXa-672-102.png)
-
-需要注意的是，使用 JS Prefetch 存在一定的限制：
-
-*   JS Prefetch 只在 WIFI 环境下才生效
-*   客户端缓存上限是 32 个 url。超过后，遵循先进先出的队列规则
-*   单个页面的缓存任务上限是 6 个。超出上限的任务不予处理
 
 ### [](#23)数据预加载（Data Prefetch）
 
