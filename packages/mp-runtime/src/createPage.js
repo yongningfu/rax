@@ -42,7 +42,7 @@ export default function createPage(config = {}, renderFactory, getCoreModule) {
       // create Page instance, initialize data and setData
       this.pageInstance = new Page(this, config);
 
-      const { data, onLoad, onReady, onHide, onUnload, onPageScroll, onPullIntercept } = config;
+      const { data, onLoad, onReady, onHide, onUnload, onPageScroll, onPullIntercept, onShareAppMessage } = config;
 
       if (data) this.state = data;
 
@@ -74,6 +74,20 @@ export default function createPage(config = {}, renderFactory, getCoreModule) {
         const cycleFn = onPullIntercept.bind(this.pageInstance);
         this.cycleListeners.push({ type: 'pullIntercept', fn: cycleFn });
         pageEventEmitter.on('pullIntercept', cycleFn);
+      }
+      // onShareAppMessage
+      if ('function' === typeof onShareAppMessage) {
+        const shareSetting = onShareAppMessage.call(this.pageInstance);
+
+        const cycleFn = () => {
+          try {
+            my.setShareAppMessage(shareSetting);
+          } catch (err) {
+            // TODO: call onError cycle
+          }
+        };
+        this.cycleListeners.push({ type: 'share', fn: cycleFn });
+        pageEventEmitter.on('share', cycleFn);
       }
     }
 
