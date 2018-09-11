@@ -93,12 +93,15 @@ export default function createPage(config = {}, renderFactory, getCoreModule) {
       }
 
       // update vdom while toggle show/hide
-      this.cycleListeners.push({ type: 'show', fn: this.forceUpdate });
-      pageEventEmitter.on('show', this.forceUpdate);
+      const updatePageData = (pageData) => {
+        this.pageInstance.setData(pageData);
+      };
+      this.cycleListeners.push({ type: 'show', fn: updatePageData });
+      pageEventEmitter.on('show', updatePageData);
 
       // update page data by event
-      this.cycleListeners.push({ type: 'updatePageData', fn: this.setState });
-      pageEventEmitter.on('updatePageData', this.setState);
+      this.cycleListeners.push({ type: 'updatePageData', fn: updatePageData });
+      pageEventEmitter.on('updatePageData', updatePageData);
     }
 
     componentWillUnmount() {
@@ -108,7 +111,7 @@ export default function createPage(config = {}, renderFactory, getCoreModule) {
     }
 
     render() {
-      return render(this.pageInstance.data);
+      return render.call(this.pageInstance, this.pageInstance.data);
     }
   };
 }
