@@ -58,18 +58,23 @@ function runUpdate(component) {
   Host.isRendering = false;
 }
 
+function performWork() {
+  if (Host.isRendering) {
+    return;
+  }
+  const dirtyComponents = Host.dirtyComponents;
+  let component;
+  while (component = dirtyComponents.pop()) {
+    runUpdate(component);
+  }
+}
+
 function scheduleWork(component) {
   const dirtyComponents = Host.dirtyComponents;
   if (dirtyComponents.indexOf(component) < 0) {
     dirtyComponents.push(component);
   }
-  if (Host.isRendering) {
-    return;
-  }
-
-  while (component = dirtyComponents.pop()) {
-    runUpdate(component);
-  }
+  performWork();
 }
 
 const Updater = {
