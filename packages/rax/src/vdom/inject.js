@@ -6,6 +6,8 @@ import CompositeComponent from './composite';
 import FragmentComponent from './fragment';
 import reconciler from '../devtools/reconciler';
 import { invokeMinifiedError } from '../error';
+import toArray from './toArray';
+import { INTERNAL } from '../constant';
 
 export default function inject({ driver, measurer }) {
   // Inject component class
@@ -14,6 +16,33 @@ export default function inject({ driver, measurer }) {
   Host.Text = TextComponent;
   Host.Fragment = FragmentComponent;
   Host.Composite = CompositeComponent;
+
+  function getPrevSiblingNode(component) {
+    let parent;
+    while (true) {
+      parent = component._parentInstance && component._parentInstance[INTERNAL];
+      while (parent instanceof CompositeComponent) {
+        component = parent;
+        parent = component._parentInstance && component._parentInstance[INTERNAL];
+      }
+
+      if (!parent) return null;
+
+      const keys = Object.keys(parent._renderedChildren);
+      for (let i = component.__mountIndex - 1; i >= 0; i--) {
+        const nativeNode = toArray(parent._renderedChildren[keys[i]].__getNativeNode());
+        if (nativeNode.length > 0) return nativeNode[nativeNode.length - 1];
+      }
+
+      if (parent instanceof FragmentComponent) {
+        component = parent;
+      } else {
+        return null;
+      }
+    }
+  }
+
+  Host.getPrevSiblingNode = getPrevSiblingNode;
 
   // Inject render driver
   Host.driver = driver || Host.driver;

@@ -345,6 +345,7 @@ export default class NativeComponent extends BaseComponent {
     let prevFirstChild;
     let prevFirstNativeNode;
     let shouldUnmountPrevFirstChild;
+    let lastPlacedNode = null;
 
     // Directly remove all children from component, if nextChildren is empty (null, [], '').
     // `driver.removeChildren` is optional driver protocol.
@@ -364,8 +365,10 @@ export default class NativeComponent extends BaseComponent {
           shouldUnmountPrevFirstChild = shouldUnmount;
           prevFirstChild = prevChild;
           prevFirstNativeNode = prevFirstChild.__getNativeNode();
-
           if (isArray(prevFirstNativeNode)) {
+            if (prevFirstNativeNode.length === 0) {
+              lastPlacedNode = Host.getPrevSiblingNode(prevFirstChild);
+            }
             prevFirstNativeNode = prevFirstNativeNode[0];
           }
         } else if (shouldUnmount) {
@@ -377,7 +380,6 @@ export default class NativeComponent extends BaseComponent {
     if (nextChildren != null) {
       // `nextIndex` will increment for each child in `nextChildren`
       let nextIndex = 0;
-      let lastPlacedNode = null;
       let nextNativeNode = [];
 
       function insertNodes(nativeNodes, parent) {

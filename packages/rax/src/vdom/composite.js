@@ -457,7 +457,12 @@ class CompositeComponent extends BaseComponent {
         });
       }
     } else {
+      // If the new length large then prev
+      let lastNativeNode;
       let prevNativeNode = prevRenderedComponent.__getNativeNode();
+      if (Array.isArray(prevNativeNode) && prevNativeNode.length === 0) {
+        lastNativeNode = Host.getPrevSiblingNode(prevRenderedComponent);
+      }
       prevRenderedComponent.unmountComponent(true);
 
       this[RENDERED_COMPONENT] = instantiateComponent(nextRenderedElement);
@@ -471,8 +476,6 @@ class CompositeComponent extends BaseComponent {
 
           const driver = Host.driver;
 
-          // If the new length large then prev
-          let lastNativeNode;
           for (let i = 0; i < newNativeNode.length; i++) {
             let nativeNode = newNativeNode[i];
             if (prevNativeNode[i]) {
