@@ -17,23 +17,19 @@ export default function inject({ driver, measurer }) {
   Host.Fragment = FragmentComponent;
   Host.Composite = CompositeComponent;
 
-  function getPrevSiblingNode(component) {
-    let parent;
-    while (true) {
-      parent = component._parentInstance && component._parentInstance[INTERNAL];
-      while (parent instanceof CompositeComponent) {
+  function getHostPreviousSibling(component) {
+    let parent = component;
+    while (parent = component._parentInstance && component._parentInstance[INTERNAL]) {
+      if (parent instanceof CompositeComponent) {
         component = parent;
-        parent = component._parentInstance && component._parentInstance[INTERNAL];
+        continue;
       }
-
-      if (!parent) return null;
 
       const keys = Object.keys(parent._renderedChildren);
       for (let i = component.__mountIndex - 1; i >= 0; i--) {
         const nativeNode = toArray(parent._renderedChildren[keys[i]].__getNativeNode());
         if (nativeNode.length > 0) return nativeNode[nativeNode.length - 1];
       }
-
       if (parent instanceof FragmentComponent) {
         component = parent;
       } else {
@@ -42,7 +38,7 @@ export default function inject({ driver, measurer }) {
     }
   }
 
-  Host.getPrevSiblingNode = getPrevSiblingNode;
+  Host.getHostPreviousSibling = getHostPreviousSibling;
 
   // Inject render driver
   Host.driver = driver || Host.driver;

@@ -73,7 +73,7 @@ class FragmentComponent extends NativeComponent {
 
     if (prevElement.length === 0) {
       if (nextElement.length !== 0) {
-        let lastNativeNode = Host.getPrevSiblingNode(this);
+        let lastNativeNode = Host.getHostPreviousSibling(this);
         let fragment = this.__getNativeNode();
         this.__mountChildrenImpl(this._parent, nextElement, nextContext, (nativeNode) => {
           nativeNode = toArray(nativeNode);

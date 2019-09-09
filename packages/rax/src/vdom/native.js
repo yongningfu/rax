@@ -367,7 +367,7 @@ export default class NativeComponent extends BaseComponent {
           prevFirstNativeNode = prevFirstChild.__getNativeNode();
           if (isArray(prevFirstNativeNode)) {
             if (prevFirstNativeNode.length === 0) {
-              lastPlacedNode = Host.getPrevSiblingNode(prevFirstChild);
+              lastPlacedNode = Host.getHostPreviousSibling(prevFirstChild);
             }
             prevFirstNativeNode = prevFirstNativeNode[0];
           }

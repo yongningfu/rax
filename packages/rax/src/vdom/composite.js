@@ -461,7 +461,7 @@ class CompositeComponent extends BaseComponent {
       let lastNativeNode;
       let prevNativeNode = prevRenderedComponent.__getNativeNode();
       if (Array.isArray(prevNativeNode) && prevNativeNode.length === 0) {
-        lastNativeNode = Host.getPrevSiblingNode(prevRenderedComponent);
+        lastNativeNode = Host.getHostPreviousSibling(prevRenderedComponent);
       }
       prevRenderedComponent.unmountComponent(true);
 
